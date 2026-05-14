@@ -1,0 +1,1915 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>交付中心深度分析报告 · 2025–2026</title>
+<style>
+/* ── Lixiang Light Premium · 浅色高级灰 ──────────────── */
+:root {
+  --bg:        #F7F6F4;
+  --bg2:       #EFEFED;
+  --card:      #FFFFFF;
+  --card-hov:  #F5F4F2;
+  --gold:      #CEA472;
+  --gold-l:    #DFC0A0;
+  --gold-pale: rgba(206,164,114,.06);
+  --gold-line: linear-gradient(90deg,rgba(0,45,40,.7),rgba(206,164,114,.4),transparent);
+  --green:     #002D28;
+  --blue:      #00726D;
+  --red:       #C0614A;
+  --text1:     #333333;
+  --text2:     #666666;
+  --text3:     #AAAAAA;
+  --border:    rgba(0,45,40,.08);
+  --shadow-card: 0 1px 3px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.04);
+  --shadow-hover: 0 4px 24px rgba(0,0,0,.09), 0 1px 4px rgba(0,0,0,.06);
+  --shadow-kpi:  0 2px 8px rgba(0,0,0,.05), 0 1px 2px rgba(0,0,0,.04);
+  --r-card:    24px;
+  --r-kpi:     20px;
+  --r-ins:     16px;
+  --r-badge:   9999px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+::-webkit-scrollbar{display:none;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text1);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","SF Pro Display","Helvetica Neue",Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.6;
+}
+
+/* ── Gold top accent bar ─── */
+body::before{
+  content:'';display:block;height:3px;width:100%;
+  background:linear-gradient(90deg,#002D28,#00726D,#CEA472,#CEA472,transparent);
+  position:fixed;top:0;left:0;z-index:1000;
+}
+
+/* ── Page Header ─────────── */
+.page-header{
+  position:sticky;top:3px;z-index:100;
+  background:rgba(247,246,244,.88);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);
+  padding:0 56px;
+  height:68px;
+  display:flex;align-items:center;justify-content:space-between;
+  box-shadow:0 1px 0 var(--border),0 4px 16px rgba(0,0,0,.04);
+}
+.page-title{font-size:18px;font-weight:700;letter-spacing:-.03em;color:var(--text1);}
+.page-sub{font-size:11px;color:var(--text2);margin-top:2px;letter-spacing:.02em;}
+.badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 14px;
+  border:1px solid rgba(0,45,40,.25);
+  border-radius:var(--r-badge);
+  font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold);
+  background:var(--gold-pale);
+  transition:all .3s ease;
+}
+.badge::before{content:'✦';font-size:8px;opacity:.7;}
+
+/* ── Main layout ─────────── */
+.main{max-width:1380px;margin:0 auto;padding:44px 52px 88px;}
+
+/* ── Section ─────────────── */
+.section{margin-bottom:60px;}
+.sec-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:8px;
+}
+.sec-tag::before{content:'';display:inline-block;width:16px;height:1.5px;background:var(--gold);border-radius:2px;}
+.sec-sep{
+  height:1px;
+  background:var(--gold-line);
+  margin:6px 0 24px;
+  opacity:.6;
+}
+
+/* ── KPI Cards ───────────── */
+.kpi-row{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-bottom:48px;}
+.kpi{
+  background:var(--card);
+  border-radius:var(--r-kpi);
+  border:1px solid var(--border);
+  padding:22px 22px 18px;
+  box-shadow:var(--shadow-kpi);
+  transition:transform .3s ease, box-shadow .3s ease;
+  position:relative;overflow:hidden;
+}
+.kpi::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+  opacity:0;transition:opacity .3s ease;
+}
+.kpi:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover);}
+.kpi:hover::after{opacity:.6;}
+.kpi-l{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);margin-bottom:10px;}
+.kpi-v{font-size:28px;font-weight:900;letter-spacing:-.04em;line-height:1;color:var(--gold);}
+.kpi-v.b{color:var(--blue);}.kpi-v.g{color:var(--green);}.kpi-v.r{color:var(--red);}.kpi-v.d{color:var(--text1);}
+.kpi-u{font-size:11px;font-weight:400;color:var(--text2);margin-left:3px;letter-spacing:0;}
+.kpi-s{font-size:11px;color:var(--text2);margin-top:8px;line-height:1.5;}
+.kpi-t{font-size:11px;font-weight:600;margin-top:5px;letter-spacing:.01em;}
+.kpi-t.up{color:var(--green);}.kpi-t.dn{color:var(--red);}
+
+/* ── Chart cards ─────────── */
+.row{display:grid;gap:20px;margin-bottom:20px;}
+.r1{grid-template-columns:1fr;}
+.r2{grid-template-columns:1fr 1fr;}
+.r3{grid-template-columns:1fr 1fr 1fr;}
+.r21{grid-template-columns:2fr 1fr;}
+.card{
+  background:var(--card);
+  border-radius:var(--r-card);
+  border:1px solid var(--border);
+  padding:28px 30px 22px;
+  box-shadow:var(--shadow-card);
+  transition:transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease, border-color .35s ease;
+}
+.card:hover{
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-hover);
+  border-color:rgba(0,45,40,.18);
+}
+.ct{
+  font-size:14px;font-weight:700;letter-spacing:-.01em;
+  margin-bottom:3px;color:var(--text1);
+}
+.cs{font-size:11px;color:var(--text2);margin-bottom:16px;line-height:1.6;}
+
+/* ── Legend ──────────────── */
+.leg{display:flex;flex-wrap:wrap;gap:16px;margin-bottom:14px;}
+.li{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text2);}
+.ld{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+.ls{width:12px;height:8px;border-radius:2px;flex-shrink:0;}
+.ll{width:20px;height:2.5px;border-radius:2px;flex-shrink:0;}
+
+/* ── Insight cards ───────── */
+.ins-row{display:grid;gap:14px;margin-top:18px;}
+.ic1{grid-template-columns:1fr;}
+.ic2{grid-template-columns:1fr 1fr;}
+.ic3{grid-template-columns:1fr 1fr 1fr;}
+.ins{
+  background:var(--card);
+  border-radius:var(--r-ins);
+  border:1px solid var(--border);
+  border-left:3px solid var(--gold);
+  padding:16px 18px;
+  box-shadow:var(--shadow-kpi);
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.ins:hover{transform:translateY(-1px);box-shadow:var(--shadow-hover);}
+.ins.b{border-left-color:var(--blue);}.ins.g{border-left-color:var(--green);}.ins.r{border-left-color:var(--red);}
+.in{font-size:9.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+.in.b{color:var(--blue);}.in.g{color:var(--green);}.in.r{color:var(--red);}
+.iv{font-size:24px;font-weight:900;color:var(--gold);letter-spacing:-.03em;margin:4px 0 6px;}
+.iv.b{color:var(--blue);}.iv.g{color:var(--green);}.iv.r{color:var(--red);}
+.it{font-size:12.5px;font-weight:700;letter-spacing:-.01em;margin-bottom:5px;color:var(--text1);}
+.ib{font-size:11px;color:var(--text2);line-height:1.7;}
+
+/* ── Table ───────────────── */
+.tw{overflow:hidden;border-radius:16px;border:1px solid var(--border);box-shadow:var(--shadow-kpi);}
+.dt{width:100%;border-collapse:collapse;font-size:11.5px;}
+.dt th{
+  background:var(--bg2);padding:9px 13px;text-align:right;
+  font-weight:600;color:var(--text2);font-size:10px;
+  letter-spacing:.1em;text-transform:uppercase;
+}
+.dt th:first-child{text-align:left;}
+.dt td{padding:9px 13px;border-bottom:1px solid var(--border);text-align:right;}
+.dt td:first-child{text-align:left;font-weight:600;}
+.dt tr:last-child td{border-bottom:none;}
+.dt tr:hover td{background:rgba(206,164,114,.03);}
+.dt .gd{color:var(--gold);font-weight:700;}.dt .bl{color:var(--blue);}.dt .gn{color:var(--green);font-weight:700;}.dt .rd{color:var(--red);}
+
+/* ── D3 globals ──────────── */
+.axis text{font-family:-apple-system,"PingFang SC",Arial,sans-serif;font-size:10px;fill:var(--text2);}
+.axis path,.axis line{stroke:var(--border);}
+.grid line{stroke:rgba(0,45,40,.06);stroke-dasharray:3 3;}
+.grid path{stroke:none;}
+
+/* ── Tooltip ─────────────── */
+.tipbox{
+  position:fixed;background:rgba(255,255,255,.96);
+  border:1px solid var(--border);
+  border-radius:14px;padding:13px 16px;
+  font-size:12px;pointer-events:none;
+  box-shadow:0 8px 32px rgba(0,0,0,.13),0 2px 8px rgba(0,0,0,.06);
+  opacity:0;z-index:200;
+  transition:opacity .1s ease;
+  min-width:150px;
+  backdrop-filter:blur(8px);
+}
+.tt{font-weight:700;color:var(--text1);margin-bottom:6px;font-size:12.5px;border-bottom:1px solid var(--border);padding-bottom:5px;}
+.tr{display:flex;justify-content:space-between;gap:14px;margin-top:4px;}
+.tl{color:var(--text2);}
+.tv{font-weight:700;color:var(--gold);}
+.tv.b{color:var(--blue);}.tv.g{color:var(--green);}.tv.r{color:var(--red);}
+
+/* ── Lixiang badge ───────── */
+.li-badge{
+  position:fixed;bottom:24px;right:24px;z-index:500;
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(247,246,244,.92);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(206,164,114,.25);
+  border-radius:var(--r-badge);
+  padding:6px 14px;
+  font-size:11px;font-weight:600;letter-spacing:.08em;
+  color:var(--gold);
+  box-shadow:0 2px 12px rgba(0,0,0,.1);
+  pointer-events:none;
+}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div>
+    <div class="page-title">交付中心费用深度分析报告</div>
+    <div class="page-sub">上海区域 · 浦东 &amp; 青浦 · 2025.01 — 2026.04 · 16 Charts</div>
+  </div>
+  <span class="badge">Deep Analysis · CPD Efficiency</span>
+</div>
+
+<div class="main">
+
+<!-- KPIs -->
+<div class="sec-tag">OVERVIEW · 核心指标速览</div>
+<div class="sec-sep"></div>
+<div class="kpi-row">
+  <div class="kpi"><div class="kpi-l">2026.03 合计交付量</div><div class="kpi-v d">2,021<span class="kpi-u">辆</span></div><div class="kpi-s">浦东 1,246 + 青浦 775</div><div class="kpi-t up">↑ 同比 +234%</div></div>
+  <div class="kpi"><div class="kpi-l">浦东历史最优CPD</div><div class="kpi-v">1,060<span class="kpi-u">元/辆</span></div><div class="kpi-s">2026.03 · 开业 85% 降幅</div><div class="kpi-t up">↓ 目标1000元已临近</div></div>
+  <div class="kpi"><div class="kpi-l">青浦历史最优CPD</div><div class="kpi-v b">972<span class="kpi-u">元/辆</span></div><div class="kpi-s">2026.04 · 开业 75% 降幅</div><div class="kpi-t up">↓ 已破千元目标线</div></div>
+  <div class="kpi"><div class="kpi-l">浦东4月CPD环比</div><div class="kpi-v r" style="font-size:22px">+57%<span class="kpi-u">环比</span></div><div class="kpi-s">量850辆↓ CPD 1,667元↑</div><div class="kpi-t dn">↑ 量降固定成本暴露</div></div>
+  <div class="kpi"><div class="kpi-l">阵地成本占比变化</div><div class="kpi-v g" style="font-size:20px">82%→39%</div><div class="kpi-s">浦东 25.01→26.03</div><div class="kpi-t up">↓ 规模化摊薄主驱动</div></div>
+  <div class="kpi"><div class="kpi-l">PDI 异常月（25.10）</div><div class="kpi-v r" style="font-size:20px">140K<span class="kpi-u">浦东</span></div><div class="kpi-s">正常水平约 20–60K</div><div class="kpi-t dn">↑ 需排查根因</div></div>
+</div>
+
+<!-- ═══ SECTION 01 ═══ -->
+<div class="section">
+  <div class="sec-tag">SECTION 01 · 量效联动总览</div>
+  <div class="sec-sep"></div>
+  <div class="row r1">
+    <div class="card">
+      <div class="ct">Chart 1 · 月度交付量 × CPD 双轴联动</div>
+      <div class="cs">柱：月度交付量（右轴，辆）· 线：综合CPD（左轴，元/辆）· 两中心叠加 · 2025.01–2026.04</div>
+      <div class="leg">
+        <div class="li"><div class="ls" style="background:#E5C9A3"></div>浦东交付量</div>
+        <div class="li"><div class="ls" style="background:#7FC4C2"></div>青浦交付量</div>
+        <div class="li"><div class="ll" style="background:#CEA472"></div>浦东CPD（左轴）</div>
+        <div class="li"><div class="ll" style="background:#00726D"></div>青浦CPD（左轴）</div>
+        <div class="li"><div class="ll" style="background:#002D28;border-top:2px dashed #002D28;height:0"></div>目标1,000元</div>
+      </div>
+      <div id="c1"></div>
+    </div>
+  </div>
+  <div class="ins-row ic3">
+    <div class="ins">
+      <div class="in">结论</div>
+      <div class="iv">规模效应是降本的核心</div>
+      <div class="it">交付量与CPD呈强镜像关系，规模效应是降本核心</div>
+      <div class="ib">浦东交付量增长10倍，CPD下降85%。两条曲线（量升+CPD降）呈明显镜像关系，规模效应是降本的根本驱动力。</div>
+    </div>
+    <div class="ins b">
+      <div class="in b">核心发现</div>
+      <div class="iv b">月交付量500辆是关键的效率拐点</div>
+      <div class="it">月交付量500辆是关键效率拐点</div>
+      <div class="ib">月交付量500辆是关键的效率拐点。低于此值，CPD高企且波动大；高于此值，CPD进入快速下降通道，固定阵地成本进入高效摊薄区间。</div>
+    </div>
+    <div class="ins r">
+      <div class="in r">关键问题</div>
+      <div class="iv r">成本刚性大</div>
+      <div class="it">量降导致CPD剧烈反弹，成本刚性暴露</div>
+      <div class="ib">交付量的月度波动会直接导致CPD剧烈反弹（如2026年4月，量降32%，CPD反弹57%），暴露了成本的刚性。明确机会点：将稳定并提升月度交付量（特别是青浦中心）作为最高优先级经营动作，坚守500辆的运营健康线。</div>
+    </div>
+  </div>
+  <div class="row r1" style="margin-top:18px">
+    <div class="card">
+      <div class="ct">Chart 1a · CPD 分布箱线图（运营稳健性评估）</div>
+      <div class="cs">箱体=Q1–Q3四分位距 · 中线=中位数 · 须=1.5×IQR · 点=离群值 · 越矮越稳健</div>
+      <div id="c_box"></div>
+    </div>
+  </div>
+  <div class="ins-row ic2" style="margin-top:14px">
+    <div class="ins b">
+      <div class="in b">结论</div>
+      <div class="iv b">浦东双优</div>
+      <div class="it">效率中位数占优，运营稳定性更强</div>
+      <div class="ib">浦东不仅在效率中位数上占优（中位数CPD约低于青浦400元），其运营稳定性也更强——CPD分布箱体更窄，离群值更少，规模化红利已稳定释放。</div>
+    </div>
+    <div class="ins r">
+      <div class="in r">关键问题</div>
+      <div class="iv r">青浦波动大</div>
+      <div class="it">青浦CPD波动范围更宽，稳定性更弱</div>
+      <div class="ib">青浦CPD四分位距显著大于浦东，尾部离群值更多，主因月度交付量波动更大，导致固定成本摊薄不均匀。提升青浦量能的稳定性是改善运营质量的关键。</div>
+    </div>
+  </div>
+  <div class="row r2" style="margin-top:18px">
+    <div class="card">
+      <div class="ct">Chart 1b · 浦东 各项CPD趋势</div>
+      <div class="cs">4条折线分别追踪业务/人力/PDI/阵地 CPD变化</div>
+      <div class="leg">
+        <div class="li"><div class="ld" style="background:#CEA472"></div>业务CPD</div>
+        <div class="li"><div class="ld" style="background:#DFC0A0"></div>人力CPD</div>
+        <div class="li"><div class="ld" style="background:#AAAAAA"></div>PDI CPD</div>
+        <div class="li"><div class="ld" style="background:#00726D"></div>阵地CPD</div>
+      </div>
+      <div id="c4pd"></div>
+    </div>
+    <div class="card">
+      <div class="ct">Chart 1c · 青浦 各项CPD趋势</div>
+      <div class="cs">4条折线分别追踪业务/人力/PDI/阵地 CPD变化</div>
+      <div class="leg">
+        <div class="li"><div class="ld" style="background:#CEA472"></div>业务CPD</div>
+        <div class="li"><div class="ld" style="background:#DFC0A0"></div>人力CPD</div>
+        <div class="li"><div class="ld" style="background:#AAAAAA"></div>PDI CPD</div>
+        <div class="li"><div class="ld" style="background:#00726D"></div>阵地CPD</div>
+      </div>
+      <div id="c4qp"></div>
+    </div>
+  </div>
+  <div class="ins-row ic2" style="margin-top:14px">
+    <div class="ins">
+      <div class="in">结论</div>
+      <div class="iv">阵地降本是长期关键</div>
+      <div class="it">阵地摊薄效果显著，人力CPD进入平台期</div>
+      <div class="ib">阵地CPD随规模摊薄效果显著（浦东降91%），验证规模逻辑完全正确。人力CPD已进入平台期（330–490元/辆），且会随交付量波动，提升人效是下一阶段突破口。</div>
+    </div>
+    <div class="ins b">
+      <div class="in b">明确机会点</div>
+      <div class="iv b">提升人效是突破口</div>
+      <div class="it">人力CPD随量波动，提升人均产能是关键</div>
+      <div class="ib">人力CPD不像阵地那样单纯靠量摊薄，其"价"（人均成本）和"效"（人均产能）均需优化。特别是青浦中心，人力CPD长期高于浦东，优化空间最大。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 02 ═══ -->
+<div class="section">
+  <div class="sec-tag">SECTION 02 · 成本结构深度对比</div>
+  <div class="sec-sep"></div>
+  <div class="ins-row ic2" style="margin-bottom:18px">
+    <div class="ins">
+      <div class="in">结论</div>
+      <div class="iv">固定→变动</div>
+      <div class="it">成本结构从阵地主导转向业务+人力主导</div>
+      <div class="ib">随着规模扩大，成本结构从"固定成本（阵地）主导"转向"变动成本（业务+人力）主导"。当前最大改善空间已转向变动成本，两项合计占比超50%。</div>
+    </div>
+    <div class="ins r">
+      <div class="in r">关键问题</div>
+      <div class="iv r">↑人力</div>
+      <div class="it">青浦人力成本占比持续显著高于浦东</div>
+      <div class="ib">青浦中心的人力成本占比持续显著高于浦东，即使在量相近月份，青浦人力CPD仍偏高100–200元/辆，是两中心成本结构最显著的差异项。</div>
+    </div>
+  </div>
+  <div class="row r1">
+    <div class="card">
+      <div class="ct">Chart 2 · 双中心各月成本结构并排堆叠（CPD 元/辆）</div>
+      <div class="cs">每月两柱：深色=浦东 / 浅色=青浦 · 堆叠：业务费用 / 人力成本 / PDI / 阵地运营 · 可直接对比两中心结构差异</div>
+      <div class="leg">
+        <div class="li"><div class="ls" style="background:#CEA472"></div>浦东·业务费用</div>
+        <div class="li"><div class="ls" style="background:#DFC0A0"></div>浦东·人力成本</div>
+        <div class="li"><div class="ls" style="background:#AAAAAA"></div>浦东·PDI</div>
+        <div class="li"><div class="ls" style="background:#00726D"></div>浦东·阵地运营</div>
+        <div class="li" style="margin-left:10px"><div class="ls" style="background:#CEA472;opacity:.4"></div>青浦（浅色=同项目）</div>
+      </div>
+      <div id="c2"></div>
+    </div>
+  </div>
+  <div class="row r2" style="margin-top:18px">
+    <div class="card">
+      <div class="ct">Chart 2a · 浦东 成本项占比演变</div>
+      <div class="cs">各项占总费用% · 阵地占比从82%→39%</div>
+      <div id="c3pd"></div>
+    </div>
+    <div class="card">
+      <div class="ct">Chart 2b · 青浦 成本项占比演变</div>
+      <div class="cs">各项占总费用% · 人力占比相对偏高</div>
+      <div id="c3qp"></div>
+    </div>
+  </div>
+  <div class="row r2" style="margin-top:18px">
+    <div class="card">
+      <div class="ct">Chart 2c · 人均月度人力成本（K元/人）</div>
+      <div class="cs">总人力成本 ÷ 交付员人数 · 反映"价"的维度 · 偏高说明人均薪酬或编制冗余</div>
+      <div class="leg">
+        <div class="li"><div class="ls" style="background:#CEA472"></div>浦东</div>
+        <div class="li"><div class="ls" style="background:#00726D"></div>青浦</div>
+      </div>
+      <div id="c2b"></div>
+    </div>
+    <div class="card">
+      <div class="ct">Chart 2d · 人均月产能 vs 人均人力成本（散点）</div>
+      <div class="cs">X：人均产能（辆/人）· Y：人均人力成本（K元/人）· 右下角=高效 · 左上角=低效</div>
+      <div id="c2c"></div>
+    </div>
+  </div>
+  <div class="ins-row ic2" style="margin-top:14px">
+    <div class="ins">
+      <div class="in">结论</div>
+      <div class="iv">青浦价+量双短板</div>
+      <div class="it">青浦人力成本高的根因是"价"和"量"的双重问题</div>
+      <div class="ib">人均月度人力成本比浦东高15–25%，且人均产能（效率）更低，散点图显示青浦处于"高成本、低产能"的低效区间，是价差与效率双重劣势叠加的结果。</div>
+    </div>
+    <div class="ins g">
+      <div class="in g">明确机会点</div>
+      <div class="iv g">启动青浦人力效能提升专项</div>
+      <div class="it">立即启动青浦人力效能提升专项</div>
+      <div class="ib">通过优化编制、排班提升人均产能。若将青浦人力效率优化至浦东水平，预计年化可节省约173万元，是当前最具确定性的短期降本路径。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 03 ═══ -->
+<div class="section">
+  <div class="sec-tag">SECTION 03 · CPD 驱动因子分解</div>
+  <div class="sec-sep"></div>
+  <div class="row r1">
+    <div class="card">
+      <div class="ct">Chart 3 · CPD驱动因子分解 — 协方差分解（方法A）</div>
+      <div class="cs">当总CPD波动100元时，各成本分项的期望贡献（元）· 协方差分解 · 严格加总=100元 · 两中心分开展示</div>
+      <div id="c_reg"></div>
+    </div>
+  </div>
+  <div class="ins-row ic1" style="margin-top:14px">
+    <div class="ins b">
+      <div class="in b">结论</div>
+      <div class="iv b">优化青浦人力</div>
+      <div class="it">将优化青浦人力配置作为最具确定性的短期降本杠杆</div>
+      <div class="ib">将优化青浦人力配置作为最具确定性的短期降本杠杆。协方差分解显示，阵地运营是首要CPD波动来源（浦东贡献78元、青浦贡献65元/100元CPD波动），但阵地成本刚性，只能靠量摊薄。</div>
+    </div>
+  </div>
+  <div class="row r1" style="margin-top:18px">
+    <div class="card">
+      <div class="ct">Chart 3a · CPD驱动因子分解 — 2026年1-4月（协方差分解）</div>
+      <div class="cs">仅使用2026年1–4月数据（N=4）· 当总CPD波动100元时各成本分项期望贡献（元）· 两中心分开展示</div>
+      <div id="c_reg26"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 04 ═══ -->
+<div class="section">
+  <div class="sec-tag">SECTION 04 · 成本弹性与摊薄分析</div>
+  <div class="sec-sep"></div>
+  <div class="row r2">
+    <div class="card">
+      <div class="ct">Chart 4a · 业务费用弹性散点（量 vs 费用）</div>
+      <div class="cs">X：月交付量（辆）· Y：业务费用（K元）· 两中心 · 含线性趋势线</div>
+      <div id="c5"></div>
+    </div>
+    <div class="card">
+      <div class="ct">Chart 4b · 阵地成本摊薄曲线</div>
+      <div class="cs">X：月交付量 · Y：阵地CPD（元/辆）· 理论双曲线 vs 实际散点</div>
+      <div class="leg">
+        <div class="li"><div class="ld" style="background:#CEA472"></div>浦东实际</div>
+        <div class="li"><div class="ld" style="background:#00726D"></div>青浦实际</div>
+        <div class="li"><div class="ll" style="background:#CEA472;opacity:.4"></div>浦东理论曲线</div>
+        <div class="li"><div class="ll" style="background:#00726D;opacity:.4"></div>青浦理论曲线</div>
+      </div>
+      <div id="c6"></div>
+    </div>
+  </div>
+  <div class="ins-row ic2">
+    <div class="ins">
+      <div class="in">Chart 4a 结论</div>
+      <div class="iv">R²≈0.85+</div>
+      <div class="it">业务费用属高弹性变动成本，但存在异常偏离</div>
+      <div class="ib">业务费用与交付量呈强线性相关（R²≈0.85+），属高弹性变动成本，但2025年10月存在显著异常偏离（浦东626K，正常水平2–3倍）。关键问题：业务费用存在单月异常投入，需审视费效比。</div>
+    </div>
+    <div class="ins b">
+      <div class="in b">Chart 4b 结论</div>
+      <div class="iv b">y=K/x</div>
+      <div class="it">阵地CPD完美符合双曲线理论，数学验证规模摊薄</div>
+      <div class="ib">阵地CPD完美符合y=固定总额/交付量的双曲线理论，从数学上验证了"规模摊薄固定成本"的逻辑。月量1,200辆时阵地CPD≤450元，2,000辆时可降至280元。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 05 ═══ -->
+<div class="section">
+  <div class="sec-tag">SECTION 05 · 环比 · 同比分析</div>
+  <div class="sec-sep"></div>
+  <div class="row r1">
+    <div class="card">
+      <div class="ct">Chart 5a · 综合CPD月度环比变化（%）</div>
+      <div class="cs">正值=CPD下降（改善↑绿）· 负值=CPD上升（恶化↓红）· 两中心并列 · 2025.02–2026.04</div>
+      <div class="leg">
+        <div class="li"><div class="ls" style="background:#CEA472"></div>浦东</div>
+        <div class="li"><div class="ls" style="background:#00726D"></div>青浦</div>
+      </div>
+      <div id="c7"></div>
+    </div>
+  </div>
+  <div class="row r1" style="margin-top:18px">
+    <div class="card">
+      <div class="ct">Chart 5b · 季度同比：交付量 &amp; CPD（2025 vs 2026）</div>
+      <div class="cs">左轴：季度平均CPD（元/辆）· 右轴：季度总交付量（辆）· 2025 Q1–Q4 与 2026 Q1 对比</div>
+      <div class="leg">
+        <div class="li"><div class="ls" style="background:#E5C9A3"></div>2025 浦东量</div>
+        <div class="li"><div class="ls" style="background:#7FC4C2"></div>2025 青浦量</div>
+        <div class="li"><div class="ls" style="background:#CEA472"></div>2026 浦东量</div>
+        <div class="li"><div class="ls" style="background:#00726D"></div>2026 青浦量</div>
+        <div class="li"><div class="ll" style="background:#CEA472"></div>浦东CPD</div>
+        <div class="li"><div class="ll" style="background:#00726D"></div>青浦CPD</div>
+      </div>
+      <div id="c8"></div>
+    </div>
+  </div>
+  <div class="ins-row ic3">
+    <div class="ins b">
+      <div class="in b">Chart 5a 结论</div>
+      <div class="iv b">强季节性</div>
+      <div class="it">CPD改善呈强季节性，Q4是冲量降本黄金窗口期</div>
+      <div class="ib">CPD改善呈现强季节性——每年Q4是冲量降本的黄金窗口期（25.11–25.12浦东环比降34%/22%），而2月春节是必然的成本反弹期。建议提前制定季节性成本预案。</div>
+    </div>
+    <div class="ins">
+      <div class="in">Chart 5b 结论</div>
+      <div class="iv">规模效应显著</div>
+      <div class="it">规模积累效应显著，成本曲线已整体下移</div>
+      <div class="ib">规模积累效应显著，2026年Q1的CPD同比2025年Q1下降75%，成本曲线已整体下移。量的积累使季节性低谷（春节）的CPD也大幅改善。</div>
+    </div>
+    <div class="ins r">
+      <div class="in r">明确机会点</div>
+      <div class="iv r">2月预案</div>
+      <div class="it">春节月主动管理，提前压缩可控费用</div>
+      <div class="ib">建议2月提前压缩可控费用（业务活动、阶段性人力调配），减少固定成本暴露，实现从被动响应到主动管理的转变。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 06 ═══ -->
+<div class="section">
+  <div class="sec-tag">SECTION 06 · PDI 成本专项</div>
+  <div class="sec-sep"></div>
+  <div class="row r1">
+    <div class="card">
+      <div class="ct">Chart 6 · PDI 绝对费用 &amp; CPD 双轴（浦东 vs 青浦）</div>
+      <div class="cs">柱：PDI月度绝对费用（K元，右轴）· 线：PDI CPD（元/辆，左轴）· 高亮异常月 2025.10</div>
+      <div class="leg">
+        <div class="li"><div class="ls" style="background:#E5C9A3"></div>浦东PDI费用(K)</div>
+        <div class="li"><div class="ls" style="background:#7FC4C2"></div>青浦PDI费用(K)</div>
+        <div class="li"><div class="ll" style="background:#CEA472"></div>浦东PDI CPD</div>
+        <div class="li"><div class="ll" style="background:#00726D"></div>青浦PDI CPD</div>
+      </div>
+      <div id="c9"></div>
+    </div>
+  </div>
+  <div class="ins-row ic2">
+    <div class="ins">
+      <div class="in">结论</div>
+      <div class="iv">正常可控</div>
+      <div class="it">PDI成本在正常情况下可控，但存在突发性异常风险</div>
+      <div class="ib">PDI成本在正常情况下可控（浦东12–68K，青浦14–80K，CPD均在100元/辆以内），但存在突发性异常风险（2025.10两中心同步异常3–5倍）。</div>
+    </div>
+    <div class="ins b">
+      <div class="in b">明确机会点</div>
+      <div class="iv b">建立预警</div>
+      <div class="it">为PDI设立预警机制，明确预算费用标准及控费政策</div>
+      <div class="ib">为PDI设立预警机制，明确预算费用标准及控费政策。建议将PDI CPD &gt;150元/辆设为月度触发复查红线，并明确异常处置流程，实现主动风控。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 07 ═══ -->
+<div class="section">
+  <div class="sec-tag">SECTION 07 · 双中心差距追踪</div>
+  <div class="sec-sep"></div>
+  <div class="row r1">
+    <div class="card">
+      <div class="ct">Chart 7 · 浦东 vs 青浦 CPD 差距追踪</div>
+      <div class="cs">浦东CPD − 青浦CPD（元/辆）· 正值=浦东更贵 · 负值=青浦更贵 · 面积区分方向</div>
+      <div id="c10"></div>
+    </div>
+  </div>
+  <div class="ins-row ic3">
+    <div class="ins">
+      <div class="in">结论</div>
+      <div class="iv">差距反转</div>
+      <div class="it">从"浦东贵"到"青浦贵"，差距已完成反转</div>
+      <div class="ib">两中心CPD差距已完成反转，从"浦东因量少而更贵"变为"青浦因量少且人力效率低而更贵"。核心发现：当前差距 = 交付量差距 + 人力效率差距。</div>
+    </div>
+    <div class="ins r">
+      <div class="in r">关键问题</div>
+      <div class="iv r">区域短板</div>
+      <div class="it">青浦中心是区域的成本短板，影响整体效率</div>
+      <div class="ib">青浦中心是区域的成本短板，影响整体效率。在量级差距持续扩大的背景下，青浦的人力效率劣势被进一步放大，形成复合不利局面。</div>
+    </div>
+    <div class="ins g">
+      <div class="in g">明确机会点</div>
+      <div class="iv g">双管齐下</div>
+      <div class="it">前端增量 + 后端复制浦东人力效能实践</div>
+      <div class="ib">双管齐下：① 前端驱动，提升青浦中心的销量与交付量；② 后端复制浦东人力效能实践至青浦。两项协同推进，可实现量效双升。</div>
+    </div>
+  </div>
+</div>
+
+<!-- 数据明细 -->
+<div class="section">
+  <div class="sec-tag">DATA · 完整月度数据明细</div>
+  <div class="sec-sep"></div>
+  <div class="tw">
+    <table class="dt">
+      <thead>
+        <tr>
+          <th>月份</th>
+          <th>浦东量</th><th>青浦量</th><th>合计量</th>
+          <th>浦东CPD</th><th>浦东业务</th><th>浦东人力</th><th>浦东阵地</th>
+          <th>青浦CPD</th><th>青浦业务</th><th>青浦人力</th><th>青浦阵地</th>
+          <th>CPD差</th>
+        </tr>
+      </thead>
+      <tbody id="dtbody"></tbody>
+    </table>
+  </div>
+</div>
+
+</div><!-- .main -->
+<div class="tipbox" id="tip"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script>
+// ═══════════════════════════════════════════════
+//  DATA
+// ═══════════════════════════════════════════════
+const MONTHS = ['25.01','25.02','25.03','25.04','25.05','25.06',
+                '25.07','25.08','25.09','25.10','25.11','25.12',
+                '26.01','26.02','26.03','26.04'];
+
+const VOL_PD = [136,102,262,300,542,463,396,432,602,768,692,1095,661,613,1246,850];
+const VOL_QP = [107,104,265,265,438,386,356,357,565,607,660,1006,510,436,775,483];
+
+const PD = {
+  biz:   [131.61,119.74,131.19,217.94,204.57,289.04,240.35,284.38,386.66,626.50,276.37,383.33,303.97,255.56,334.17,433.86],
+  labor: [172.39, 91.85,163.72,216.00,275.70,384.88,293.99,338.66,208.36,369.68,330.13,377.03,339.26,360.21,416.47,406.81],
+  pdi:   [ 41.78,  5.39, 25.17, 18.51, 19.58, 12.09, 23.70, 49.83, 38.45,139.77, 98.29, 92.72, 66.41, 42.21, 51.25, 68.53],
+  venue: [621.94,624.55,621.94,607.90,621.94,607.91,622.28,545.58,525.36,556.88,511.01,521.35,539.72,484.83,518.72,507.70],
+};
+const QP = {
+  biz:   [87.62,74.95,112.08,123.50,151.08,192.89,233.21,221.62,313.72,291.98,233.79,331.68,null,172.96,244.12,211.04],
+  labor: [354.01,139.43,193.54,225.30,278.86,417.62,385.26,309.61,236.03,386.03,363.91,483.84,383.29,339.12,370.66,328.37],
+  pdi:   [12.09,-0.85,14.02,8.91,18.10,18.54,18.39,36.05,52.47,160.64,100.03,112.76,73.84,63.75,79.02,101.18],
+  venue: [547.02,505.42,540.14,535.91,542.02,527.39,604.22,98.91,531.45,543.45,528.28,539.73,554.83,504.32,538.82,527.59],
+};
+
+// 明细费用分项（K元/月，2025.01→2026.04）
+const PD_PROMO  = [-25.92,14.06,25.1,69.72,21.75,38.48,28.46,63.73,36.65,18.27,12.42,9.54,40.95,1.14,2.48,2.89];
+const QP_PROMO  = [-20.08,13.72,14.96,28.34,16.03,35.26,31.64,31.97,18.55,10.04,1.17,2.56,30.99,3.23,4.77,5.58];
+const PD_CARE   = [5.33,2.09,5.05,14.62,6.43,85.21,23.93,62.98,85.78,113.68,43.01,35.82,27.76,35.01,92.08,163.57];
+const QP_CARE   = [null,null,0.67,5.89,9.42,33.71,29.7,27.78,87.24,44.99,23.3,37.79,33.33,14.42,47.46,37.75];
+const PD_DAILY  = [112.61,43.06,84.48,104.86,125.26,117.43,124.5,92.08,170.16,360.39,143.87,232.03,174.51,160.14,198.05,196.64];
+const QP_DAILY  = [61.32,21.29,65.81,72.01,89.77,97.66,134.15,102.0,145.56,124.42,141.29,233.73,null,120.53,153.36,128.6];
+const PD_IT     = [39.59,60.53,16.56,28.73,51.13,47.91,62.71,61.42,91.91,134.11,71.9,99.65,60.75,59.26,41.55,70.76];
+const QP_IT     = [46.39,39.95,30.64,17.26,35.86,26.26,36.7,59.87,62.38,112.48,40.55,59.91,49.89,34.78,38.53,39.11];
+const PD_TALENT = [null,null,null,null,null,null,0.76,4.17,2.17,0.05,5.16,6.28,null,null,null,null];
+const QP_TALENT = [null,null,null,null,null,null,1.02,null,null,0.05,27.49,-2.31,-6.27,null,null,null];
+
+function toCPD(k, vol) { return (k == null || vol === 0) ? null : Math.round(k / vol * 1000); }
+function fmtN(v) { return v == null ? '—' : d3.format(',d')(Math.round(v)); }
+function safePos(v) { return Math.max(0, v || 0); }
+
+// Total CPD
+const CPD_PD = MONTHS.map((_,i) => toCPD(PD.biz[i]+PD.labor[i]+PD.pdi[i]+PD.venue[i], VOL_PD[i]));
+const CPD_QP = MONTHS.map((_,i) => QP.biz[i]==null ? null : toCPD(QP.biz[i]+QP.labor[i]+safePos(QP.pdi[i])+QP.venue[i], VOL_QP[i]));
+
+// CPD components
+const CC = {
+  pd: {
+    biz:    MONTHS.map((_,i)=>toCPD(PD.biz[i],VOL_PD[i])),
+    labor:  MONTHS.map((_,i)=>toCPD(PD.labor[i],VOL_PD[i])),
+    pdi:    MONTHS.map((_,i)=>toCPD(PD.pdi[i],VOL_PD[i])),
+    venue:  MONTHS.map((_,i)=>toCPD(PD.venue[i],VOL_PD[i])),
+    promo:  MONTHS.map((_,i)=>toCPD(PD_PROMO[i], VOL_PD[i])),
+    care:   MONTHS.map((_,i)=>toCPD(PD_CARE[i],  VOL_PD[i])),
+    daily:  MONTHS.map((_,i)=>toCPD(PD_DAILY[i], VOL_PD[i])),
+    it:     MONTHS.map((_,i)=>toCPD(PD_IT[i],    VOL_PD[i])),
+    talent: MONTHS.map((_,i)=>toCPD(PD_TALENT[i],VOL_PD[i])),
+  },
+  qp: {
+    biz:    MONTHS.map((_,i)=>toCPD(QP.biz[i],VOL_QP[i])),
+    labor:  MONTHS.map((_,i)=>toCPD(QP.labor[i],VOL_QP[i])),
+    pdi:    MONTHS.map((_,i)=>toCPD(safePos(QP.pdi[i]),VOL_QP[i])),
+    venue:  MONTHS.map((_,i)=>toCPD(QP.venue[i],VOL_QP[i])),
+    promo:  MONTHS.map((_,i)=>toCPD(QP_PROMO[i], VOL_QP[i])),
+    care:   MONTHS.map((_,i)=>toCPD(QP_CARE[i],  VOL_QP[i])),
+    daily:  MONTHS.map((_,i)=>toCPD(QP_DAILY[i], VOL_QP[i])),
+    it:     MONTHS.map((_,i)=>toCPD(QP_IT[i],    VOL_QP[i])),
+    talent: MONTHS.map((_,i)=>toCPD(QP_TALENT[i],VOL_QP[i])),
+  }
+};
+
+// 交付员人数（来源：Excel 交付-HC 行，已核实）
+const STAFF_PD = [7,8,6,6,9,9,9,9,10,13,14,12,14,13,15,15];
+const STAFF_QP = [11,10,7,7,10,10,10,10,10,15,17,16,16,16,14,14];
+// 人均月度人力成本（K元/人）
+const PC_LABOR_PD = PD.labor.map((v,i)=>+(v/STAFF_PD[i]).toFixed(2));
+const PC_LABOR_QP = QP.labor.map((v,i)=>+(v/STAFF_QP[i]).toFixed(2));
+// 人均月产能（辆/人）
+const PC_VOL_PD = VOL_PD.map((v,i)=>+(v/STAFF_PD[i]).toFixed(1));
+const PC_VOL_QP = VOL_QP.map((v,i)=>+(v/STAFF_QP[i]).toFixed(1));
+
+const TIP = d3.select('#tip');
+function showTip(e, html) {
+  TIP.style('opacity',1).html(html).style('left',(e.clientX+14)+'px').style('top',(e.clientY-12)+'px');
+}
+function hideTip() { TIP.style('opacity',0); }
+
+// ═══════════════════════════════════════════════
+//  CHART 1: Dual-axis Volume Bars + CPD Lines
+// ═══════════════════════════════════════════════
+(function(){
+  const el = document.getElementById('c1');
+  const W = el.offsetWidth||1100, H = 340, m = {top:24,right:72,bottom:38,left:72};
+  const iW=W-m.left-m.right, iH=H-m.top-m.bottom;
+  const svg = d3.select('#c1').append('svg').attr('width',W).attr('height',H)
+    .append('g').attr('transform',`translate(${m.left},${m.top})`);
+
+  const combined = MONTHS.map((_,i)=>VOL_PD[i]+VOL_QP[i]);
+  const allCPD = [...CPD_PD,...CPD_QP].filter(v=>v!=null);
+  const yCPD = d3.scaleLinear().domain([0,d3.max(allCPD)*1.1]).range([iH,0]).nice();
+  const yVol = d3.scaleLinear().domain([0,d3.max(combined)*1.2]).range([iH,0]).nice();
+  const x = d3.scaleBand().domain(MONTHS).range([0,iW]).padding(0.25);
+
+  svg.append('g').attr('class','grid').call(d3.axisLeft(yCPD).tickSize(-iW).tickFormat('').ticks(6));
+  svg.append('g').attr('class','axis').attr('transform',`translate(0,${iH})`)
+    .call(d3.axisBottom(x).tickSize(0)).selectAll('text').attr('dy','1.2em').style('font-size','9.5px');
+  svg.append('g').attr('class','axis').call(d3.axisLeft(yCPD).ticks(6).tickFormat(v=>d3.format(',d')(v)));
+  svg.append('g').attr('class','axis').attr('transform',`translate(${iW},0)`)
+    .call(d3.axisRight(yVol).ticks(5).tickFormat(v=>d3.format(',d')(v)));
+
+  svg.append('text').attr('transform','rotate(-90)').attr('x',-iH/2).attr('y',-60)
+    .attr('text-anchor','middle').attr('font-size',10).attr('fill','var(--text2)').text('综合 CPD 元/辆');
+  svg.append('text').attr('x',iW+58).attr('y',-10)
+    .attr('text-anchor','middle').attr('font-size',10).attr('fill','var(--text2)').text('交付量 辆');
+
+  // 2026 shade
+  const x26s = x('26.01');
+  svg.append('rect').attr('x',x26s-x.step()*0.12).attr('y',0).attr('width',iW-(x26s-x.step()*0.12))
+    .attr('height',iH).attr('fill','rgba(206,164,114,.04)');
+  svg.append('text').attr('x',x26s-x.step()*0.12+6).attr('y',14)
+    .attr('font-size',9).attr('fill','var(--gold)').attr('opacity',.5).text('2026 ▶');
+
+  // Stacked volume bars
+  svg.selectAll('.bpd').data(MONTHS).enter().append('rect').attr('class','bpd')
+    .attr('x',d=>x(d)).attr('width',x.bandwidth())
+    .attr('y',(_,i)=>yVol(VOL_PD[i])).attr('height',(_,i)=>iH-yVol(VOL_PD[i]))
+    .attr('fill','#E5C9A3').attr('rx',2)
+    .on('mousemove',(e,d)=>{
+      const i=MONTHS.indexOf(d);
+      showTip(e,`<div class="tt">${d} · 交付量</div>
+        <div class="tr"><span class="tl">浦东</span><span class="tv">${VOL_PD[i].toLocaleString()} 辆</span></div>
+        <div class="tr"><span class="tl">青浦</span><span class="tv b">${VOL_QP[i].toLocaleString()} 辆</span></div>
+        <div class="tr"><span class="tl">合计</span><span class="tv g">${combined[i].toLocaleString()} 辆</span></div>`);
+    }).on('mouseleave',hideTip);
+
+  svg.selectAll('.bqp').data(MONTHS).enter().append('rect').attr('class','bqp')
+    .attr('x',d=>x(d)).attr('width',x.bandwidth())
+    .attr('y',(_,i)=>yVol(combined[i])).attr('height',(_,i)=>yVol(VOL_PD[i])-yVol(combined[i]))
+    .attr('fill','#7FC4C2').attr('rx',2).style('pointer-events','none');
+
+  // Target 1000
+  svg.append('line').attr('x1',0).attr('x2',iW).attr('y1',yCPD(1000)).attr('y2',yCPD(1000))
+    .attr('stroke','#002D28').attr('stroke-dasharray','5 4').attr('opacity',.65);
+  svg.append('text').attr('x',4).attr('y',yCPD(1000)-5)
+    .attr('font-size',9).attr('fill','#002D28').text('目标 1,000 元/辆');
+
+  // CPD lines
+  [{data:CPD_PD,color:'#CEA472',label:'浦东',vol:VOL_PD},{data:CPD_QP,color:'#00726D',label:'青浦',vol:VOL_QP}].forEach(s=>{
+    const pts = s.data.map((v,i)=>({v,i,m:MONTHS[i]})).filter(d=>d.v!=null);
+    svg.append('path').datum(pts).attr('fill','none').attr('stroke',s.color)
+      .attr('stroke-width',2.5).attr('stroke-linecap','round')
+      .attr('d',d3.line().x(d=>x(d.m)+x.bandwidth()/2).y(d=>yCPD(d.v)).curve(d3.curveMonotoneX));
+    svg.selectAll(null).data(pts).enter().append('circle')
+      .attr('cx',d=>x(d.m)+x.bandwidth()/2).attr('cy',d=>yCPD(d.v))
+      .attr('r',3).attr('fill','#fff').attr('stroke',s.color).attr('stroke-width',2)
+      .on('mousemove',(e,d)=>{
+        showTip(e,`<div class="tt">${d.m} · ${s.label}</div>
+          <div class="tr"><span class="tl">综合CPD</span><span class="tv">${fmtN(d.v)} 元/辆</span></div>
+          <div class="tr"><span class="tl">交付量</span><span class="tv g">${s.vol[d.i].toLocaleString()} 辆</span></div>`);
+      }).on('mouseleave',hideTip);
+  });
+})();
+
+// ═══════════════════════════════════════════════
+//  CHART 1b: CPD Boxplot
+// ═══════════════════════════════════════════════
+(function(){
+  const el = document.getElementById('c_box');
+  const W = el.offsetWidth||900, H = 300, m = {top:30,right:60,bottom:50,left:72};
+  const iW=W-m.left-m.right, iH=H-m.top-m.bottom;
+  const svg = d3.select('#c_box').append('svg').attr('width',W).attr('height',H)
+    .append('g').attr('transform',`translate(${m.left},${m.top})`);
+
+  function boxStats(arr){
+    const s = arr.filter(v=>v!=null).sort(d3.ascending);
+    const q1=d3.quantile(s,.25), q2=d3.quantile(s,.5), q3=d3.quantile(s,.75);
+    const iqr=q3-q1;
+    const lo=q1-1.5*iqr, hi=q3+1.5*iqr;
+    const wLo=d3.min(s.filter(v=>v>=lo)), wHi=d3.max(s.filter(v=>v<=hi));
+    const outliers=s.filter(v=>v<lo||v>hi);
+    return {q1,q2,q3,wLo,wHi,outliers,mean:d3.mean(s)};
+  }
+
+  const groups = [
+    {label:'浦东 PD', data:CPD_PD, color:'#CEA472'},
+    {label:'青浦 QP', data:CPD_QP.filter(v=>v!=null), color:'#00726D'},
+  ];
+
+  const allVals = [...CPD_PD,...CPD_QP].filter(v=>v!=null);
+  const y = d3.scaleLinear().domain([0, d3.max(allVals)*1.08]).range([iH,0]).nice();
+  const x = d3.scaleBand().domain(groups.map(g=>g.label)).range([0,iW]).padding(0.55);
+
+  svg.append('g').attr('class','grid').call(d3.axisLeft(y).tickSize(-iW).tickFormat('').ticks(6));
+  svg.append('g').attr('class','axis').attr('transform',`translate(0,${iH})`)
+    .call(d3.axisBottom(x).tickSize(0)).selectAll('text').attr('dy','1.4em').style('font-size','12px').style('font-weight','600');
+  svg.append('g').attr('class','axis').call(d3.axisLeft(y).ticks(6).tickFormat(v=>d3.format(',d')(v)));
+  svg.append('text').attr('transform','rotate(-90)').attr('x',-iH/2).attr('y',-58)
+    .attr('text-anchor','middle').attr('font-size',10).attr('fill','var(--text2)').text('综合 CPD 元/辆');
+
+  // Target line
+  svg.append('line').attr('x1',0).attr('x2',iW).attr('y1',y(1000)).attr('y2',y(1000))
+    .attr('stroke','#002D28').attr('stroke-dasharray','5 4').attr('opacity',.6);
+  svg.append('text').attr('x',iW-4).attr('y',y(1000)-5).attr('text-anchor','end')
+    .attr('font-size',9).attr('fill','#002D28').attr('opacity',.8).text('目标 1,000');
+
+  groups.forEach(g=>{
+    const st = boxStats(g.data);
+    const cx = x(g.label)+x.bandwidth()/2;
+    const bw = Math.min(x.bandwidth()*0.8, 80);
+
+    // IQR box
+    svg.append('rect')
+      .attr('x',cx-bw/2).attr('y',y(st.q3)).attr('width',bw).attr('height',Math.max(1,y(st.q1)-y(st.q3)))
+      .attr('fill',g.color).attr('opacity',.2).attr('rx',4).attr('stroke',g.color).attr('stroke-width',1.5);
+
+    // Median line
+    svg.append('line').attr('x1',cx-bw/2).attr('x2',cx+bw/2)
+      .attr('y1',y(st.q2)).attr('y2',y(st.q2))
+      .attr('stroke',g.color).attr('stroke-width',3).attr('stroke-linecap','round');
+
+    // Mean dot
+    svg.append('circle').attr('cx',cx).attr('cy',y(st.mean)).attr('r',4)
+      .attr('fill','none').attr('stroke',g.color).attr('stroke-width',2).attr('stroke-dasharray','2 2');
+
+    // Whiskers
+    svg.append('line').attr('x1',cx).attr('x2',cx)
+      .attr('y1',y(st.wHi)).attr('y2',y(st.q3))
+      .attr('stroke',g.color).attr('stroke-width',1.5).attr('opacity',.6);
+    svg.append('line').attr('x1',cx).attr('x2',cx)
+      .attr('y1',y(st.q1)).attr('y2',y(st.wLo))
+      .attr('stroke',g.color).attr('stroke-width',1.5).attr('opacity',.6);
+    // Whisker caps
+    [[st.wHi],[st.wLo]].forEach(([v])=>{
+      svg.append('line').attr('x1',cx-bw/4).attr('x2',cx+bw/4)
+        .attr('y1',y(v)).attr('y2',y(v))
+        .attr('stroke',g.color).attr('stroke-width',1.5).attr('opacity',.6);
+    });
+
+    // Outliers
+    st.outliers.forEach(v=>{
+      svg.append('circle').attr('cx',cx+(Math.random()-.5)*bw*0.4).attr('cy',y(v)).attr('r',4)
+        .attr('fill','none').attr('stroke','var(--red)').attr('stroke-width',1.5)
+        .style('cursor','pointer')
+        .on('mousemove',e=>showTip(e,`<div class="tt">${g.label} 离群值</div><div class="tr"><span class="tl">CPD</span><span class="tv r">${fmtN(v)} 元/辆</span></div>`))
+        .on('mouseleave',hideTip);
+    });
+
+    // Stats annotations
+    svg.append('text').attr('x',cx+bw/2+8).attr('y',y(st.q2)+4)
+      .attr('font-size',10).attr('fill',g.color).attr('font-weight','700')
+      .text('中位 '+fmtN(st.q2));
+    svg.append('text').attr('x',cx+bw/2+8).attr('y',y(st.q3)-2)
+      .attr('font-size',9).attr('fill','var(--text2)').text('Q3 '+fmtN(st.q3));
+    svg.append('text').attr('x',cx+bw/2+8).attr('y',y(st.q1)+12)
+      .attr('font-size',9).attr('fill','var(--text2)').text('Q1 '+fmtN(st.q1));
+  });
+
+  // Legend
+  [{c:'#CEA472',l:'箱体=IQR四分位距'},{c:'var(--red)',l:'离群值（>1.5×IQR）'}].forEach((item,i)=>{
+    svg.append('circle').attr('cx',iW/2-120+i*200).attr('cy',-14).attr('r',4).attr('fill',item.c).attr('opacity',.7);
+    svg.append('text').attr('x',iW/2-113+i*200).attr('y',-10).attr('font-size',9).attr('fill','var(--text2)').text(item.l);
+  });
+})();
+
+// ═══════════════════════════════════════════════
+//  CHART 2: Side-by-side stacked CPD bars
+// ═══════════════════════════════════════════════
+(function(){
+  const el = document.getElementById('c2');
+  const W = el.offsetWidth||1200, H = 380, m = {top:20,right:24,bottom:42,left:68};
+  const iW=W-m.left-m.right, iH=H-m.top-m.bottom;
+  const svg = d3.select('#c2').append('svg').attr('width',W).attr('height',H)
+    .append('g').attr('transform',`translate(${m.left},${m.top})`);
+
+  // Prepare per-month CPD components
+  const rows = MONTHS.map((_,i)=>({
+    m: MONTHS[i],
+    pd: { biz:CC.pd.biz[i]||0, labor:CC.pd.labor[i]||0, pdi:Math.max(0,CC.pd.pdi[i]||0), venue:CC.pd.venue[i]||0 },
+    qp: QP.biz[i]==null ? null : { biz:CC.qp.biz[i]||0, labor:CC.qp.labor[i]||0, pdi:Math.max(0,CC.qp.pdi[i]||0), venue:CC.qp.venue[i]||0 },
+  }));
+
+  const maxVal = d3.max(rows, d=>{
+    const pt = d.pd.biz+d.pd.labor+d.pd.pdi+d.pd.venue;
+    const qt = d.qp ? d.qp.biz+d.qp.labor+d.qp.pdi+d.qp.venue : 0;
+    return Math.max(pt, qt);
+  })*1.08;
+
+  const x0 = d3.scaleBand().domain(MONTHS).range([0,iW]).padding(0.18);
+  const x1 = d3.scaleBand().domain(['pd','qp']).range([0,x0.bandwidth()]).padding(0.08);
+  const y = d3.scaleLinear().domain([0,maxVal]).range([iH,0]).nice();
+
+  svg.append('g').attr('class','grid').call(d3.axisLeft(y).tickSize(-iW).tickFormat('').ticks(6));
+  svg.append('g').attr('class','axis').attr('transform',`translate(0,${iH})`)
+    .call(d3.axisBottom(x0).tickSize(0)).selectAll('text').attr('dy','1.4em').style('font-size','9px');
+  svg.append('g').attr('class','axis').call(d3.axisLeft(y).ticks(6).tickFormat(v=>d3.format(',d')(v)));
+
+  // 2026 shade
+  const x26s = x0('26.01');
+  svg.append('rect').attr('x',x26s-4).attr('y',0).attr('width',iW-x26s+4)
+    .attr('height',iH).attr('fill','rgba(206,164,114,.04)');
+
+  const keys = ['venue','pdi','labor','biz'];
+  const colorsPD = {venue:'#00726D', pdi:'#AAAAAA', labor:'#DFC0A0', biz:'#CEA472'};
+  const colorsQP = {venue:'rgba(0,114,109,.45)', pdi:'rgba(170,170,170,.5)', labor:'rgba(223,192,154,.45)', biz:'rgba(206,164,114,.45)'};
+  const keyLabels = {biz:'业务费用',labor:'人力成本',pdi:'PDI',venue:'阵地运营'};
+
+  rows.forEach(d=>{
+    const xPD = x0(d.m)+x1('pd'), xQP = x0(d.m)+x1('qp'), bw = x1.bandwidth();
+    // PD
+    let bt = 0;
+    keys.forEach((k,ki)=>{
+      const v = d.pd[k];
+      svg.append('rect').attr('x',xPD).attr('y',y(bt+v)).attr('width',bw).attr('height',Math.max(0,y(bt)-y(bt+v)))
+        .attr('fill',colorsPD[k]).attr('rx',ki===0?3:0)
+        .on('mousemove',e=>{
+          showTip(e,`<div class="tt">${d.m} · 浦东 CPD</div>
+            <div class="tr"><span class="tl">业务费用</span><span class="tv">${fmtN(d.pd.biz)}</span></div>
+            <div class="tr"><span class="tl">人力成本</span><span class="tv">${fmtN(d.pd.labor)}</span></div>
+            <div class="tr"><span class="tl">PDI</span><span class="tv">${fmtN(d.pd.pdi)}</span></div>
+            <div class="tr"><span class="tl">阵地运营</span><span class="tv">${fmtN(d.pd.venue)}</span></div>
+            <div class="tr" style="margin-top:4px;border-top:1px solid rgba(0,45,40,.1);padding-top:4px">
+              <span class="tl">总CPD</span><span class="tv">${fmtN(d.pd.biz+d.pd.labor+d.pd.pdi+d.pd.venue)} 元/辆</span></div>`);
+        }).on('mouseleave',hideTip);
+      bt += v;
+    });
+    // QP
+    if(d.qp){
+      let bq = 0;
+      keys.forEach((k,ki)=>{
+        const v = d.qp[k];
+        svg.append('rect').attr('x',xQP).attr('y',y(bq+v)).attr('width',bw).attr('height',Math.max(0,y(bq)-y(bq+v)))
+          .attr('fill',colorsQP[k]).attr('rx',ki===0?3:0)
+          .on('mousemove',e=>{
+            showTip(e,`<div class="tt">${d.m} · 青浦 CPD</div>
+              <div class="tr"><span class="tl">业务费用</span><span class="tv b">${fmtN(d.qp.biz)}</span></div>
+              <div class="tr"><span class="tl">人力成本</span><span class="tv b">${fmtN(d.qp.labor)}</span></div>
+              <div class="tr"><span class="tl">PDI</span><span class="tv b">${fmtN(d.qp.pdi)}</span></div>
+              <div class="tr"><span class="tl">阵地运营</span><span class="tv b">${fmtN(d.qp.venue)}</span></div>
+              <div class="tr" style="margin-top:4px;border-top:1px solid rgba(0,45,40,.1);padding-top:4px">
+                <span class="tl">总CPD</span><span class="tv b">${fmtN(d.qp.biz+d.qp.labor+d.qp.pdi+d.qp.venue)} 元/辆</span></div>`);
+          }).on('mouseleave',hideTip);
+        bq += v;
+      });
+    }
+    // PD/QP mini labels
+    svg.append('text').attr('x',xPD+bw/2).attr('y',iH+14)
+      .attr('text-anchor','middle').attr('font-size',7).attr('fill','#CEA472').text('浦');
+    svg.append('text').attr('x',xQP+bw/2).attr('y',iH+14)
+      .attr('text-anchor','middle').attr('font-size',7).attr('fill','#00726D').text('青');
+  });
+})();
+
+// ═══════════════════════════════════════════════
+//  CHART 3: Cost composition area (reusable)
+// ═══════════════════════════════════════════════
+function drawCompArea(elId, costK, vols) {
+  const validIdxs = MONTHS.map((_,i)=>i).filter(i=>costK.biz[i]!=null);
+  const aData = validIdxs.map(i=>{
+    const tot = (costK.biz[i]||0)+costK.labor[i]+safePos(costK.pdi[i])+costK.venue[i];
+    return { m:MONTHS[i],
+      biz:(costK.biz[i]||0)/tot, labor:costK.labor[i]/tot,
+      pdi:safePos(costK.pdi[i])/tot, venue:costK.venue[i]/tot };
+  });
+  const keys = ['venue','pdi','labor','biz'];
+  const colors = {venue:'#00726D',pdi:'#AAAAAA',labor:'#DFC0A0',biz:'#CEA472'};
+  const labelsK = {biz:'业务费用',labor:'人力成本',pdi:'PDI',venue:'阵地运营'};
+  const stacked = d3.stack().keys(keys)(aData);
+
+  const el = document.getElementById(elId);
+  const W = el.offsetWidth||560, H = 210, m = {top:32,right:14,bottom:34,left:46};
+  const iW=W-m.left-m.right, iH=H-m.top-m.bottom;
+  const svg = d3.select(`#${elId}`).append('svg').attr('width',W).attr('height',H)
+    .append('g').attr('transform',`translate(${m.left},${m.top})`);
+
+  const domain = aData.map(d=>d.m);
+  const x = d3.scalePoint().domain(domain).range([0,iW]).padding(.2);
+  const y = d3.scaleLinear().domain([0,1]).range([iH,0]);
+
+  svg.append('g').attr('class','axis').attr('transform',`translate(0,${iH})`)
+    .call(d3.axisBottom(x).tickSize(0)).selectAll('text').attr('dy','1.2em').style('font-size','9px');
+  svg.append('g').attr('class','axis').call(d3.axisLeft(y).ticks(4).tickFormat(v=>Math.round(v*100)+'%'));
+
+  const area = d3.area().x(d=>x(d.data.m)).y0(d=>y(d[0])).y1(d=>y(d[1])).curve(d3.curveMonotoneX);
+  stacked.forEach(s=>{
+    svg.append('path').datum(s).attr('fill',colors[s.key]).attr('opacity',.88).attr('d',area)
+      .on('mousemove',(e,d)=>{
+        const idx = Math.round((e.offsetX-m.left)/iW*(domain.length-1));
+        const row = aData[Math.min(idx,aData.length-1)];
+        if(!row) return;
+        showTip(e,`<div class="tt">${row.m} · 费用占比</div>
+          <div class="tr"><span class="tl">业务费用</span><span class="tv">${Math.round(row.biz*100)}%</span></div>
+          <div class="tr"><span class="tl">人力成本</span><span class="tv">${Math.round(row.labor*100)}%</span></div>
+          <div class="tr"><span class="tl">PDI</span><span class="tv">${Math.round(row.pdi*100)}%</span></div>
+          <div class="tr"><span class="tl">阵地运营</span><span class="tv b">${Math.round(row.venue*100)}%</span></div>`);
+      }).on('mouseleave',hideTip);
+  });
+
+  // Legend above chart (in top margin)
+  const legItems = [{k:'biz',c:'#CEA472',l:'业务费用'},{k:'labor',c:'#DFC0A0',l:'人力成本'},{k:'pdi',c:'#AAAAAA',l:'PDI'},{k:'venue',c:'#00726D',l:'阵地运营'}];
+  const legW = 88;
+  const legStart = (iW - legItems.length * legW) / 2;
+  legItems.forEach((li,i)=>{
+    svg.append('rect').attr('x',legStart+i*legW).attr('y',-22).attr('width',8).attr('height',8).attr('fill',li.c).attr('rx',1);
+    svg.append('text').attr('x',legStart+i*legW+11).attr('y',-14).attr('font-size',9).attr('fill','var(--text2)').text(li.l);
+  });
+}
+drawCompArea('c3pd', PD, VOL_PD);
+drawCompArea('c3qp', QP, VOL_QP);
+
+// ═══════════════════════════════════════════════
+//  CHART 2b: 人均月度人力成本 bar chart
+// ═══════════════════════════════════════════════
+(function(){
+  const el = document.getElementById('c2b');
+  const W = el.offsetWidth||560, H = 260, m = {top:20,right:20,bottom:38,left:54};
+  const iW=W-m.left-m.right, iH=H-m.top-m.bottom;
+  const svg = d3.select('#c2b').append('svg').attr('width',W).attr('height',H)
+    .append('g').attr('transform',`translate(${m.left},${m.top})`);
+
+  const allV = [...PC_LABOR_PD,...PC_LABOR_QP];
+  const y = d3.scaleLinear().domain([0,d3.max(allV)*1.15]).range([iH,0]).nice();
+  const x0 = d3.scaleBand().domain(MONTHS).range([0,iW]).padding(0.2);
+  const x1 = d3.scaleBand().domain(['pd','qp']).range([0,x0.bandwidth()]).padding(0.05);
+
+  svg.append('g').attr('class','grid').call(d3.axisLeft(y).tickSize(-iW).tickFormat('').ticks(5));
+  svg.append('g').attr('class','axis').attr('transform',`translate(0,${iH})`)
+    .call(d3.axisBottom(x0).tickSize(0)).selectAll('text').attr('dy','1.2em').style('font-size','8.5px');
+  svg.append('g').attr('class','axis').call(d3.axisLeft(y).ticks(5).tickFormat(v=>v+'K'));
+  svg.append('text').attr('transform','rotate(-90)').attr('x',-iH/2).attr('y',-46)
+    .attr('text-anchor','middle').attr('font-size',10).attr('fill','var(--text2)').text('人均人力成本 K元/人');
+
+  MONTHS.forEach((mo,i)=>{
+    [{val:PC_LABOR_PD[i],key:'pd',color:'#CEA472'},{val:PC_LABOR_QP[i],key:'qp',color:'#00726D'}].forEach(({val,key,color})=>{
+      svg.append('rect')
+        .attr('x',x0(mo)+x1(key)).attr('y',y(val)).attr('width',x1.bandwidth()).attr('height',iH-y(val))
+        .attr('fill',color).attr('opacity',.8).attr('rx',2)
+        .on('mousemove',e=>{
+          const center = key==='pd'?'浦东':'青浦';
+          const staff = key==='pd'?STAFF_PD[i]:STAFF_QP[i];
+          const labor = key==='pd'?PD.labor[i]:QP.labor[i];
+          showTip(e,`<div class="tt">${mo} · ${center}</div>
+            <div class="tr"><span class="tl">人力成本</span><span class="tv">${labor.toFixed(1)} K</span></div>
+            <div class="tr"><span class="tl">交付员人数</span><span class="tv">${staff} 人</span></div>
+            <div class="tr"><span class="tl">人均成本</span><span class="tv">${val.toFixed(1)} K/人</span></div>`);
+        }).on('mouseleave',hideTip);
+    });
+  });
+})();
+
+// ═══════════════════════════════════════════════
+//  CHART 2c: 人均产能 vs 人均人力成本 scatter
+// ═══════════════════════════════════════════════
+(function(){
+  const el = document.getElementById('c2c');
+  const W = el.offsetWidth||560, H = 260, m = {top:20,right:20,bottom:50,left:54};
+  const iW=W-m.left-m.right, iH=H-m.top-m.bottom;
+  const svg = d3.select('#c2c').append('svg').attr('width',W).attr('height',H)
+    .append('g').attr('transform',`translate(${m.left},${m.top})`);
+
+  const pdPts = MONTHS.map((_,i)=>({x:PC_VOL_PD[i],y:PC_LABOR_PD[i],m:MONTHS[i],c:'浦东',color:'#CEA472',vol:VOL_PD[i]}));
+  const qpPts = MONTHS.map((_,i)=>({x:PC_VOL_QP[i],y:PC_LABOR_QP[i],m:MONTHS[i],c:'青浦',color:'#00726D',vol:VOL_QP[i]}));
+  const allPts = [...pdPts,...qpPts];
+
+  const x = d3.scaleLinear().domain([0,d3.max(allPts,d=>d.x)*1.1]).range([0,iW]).nice();
+  const y = d3.scaleLinear().domain([0,d3.max(allPts,d=>d.y)*1.15]).range([iH,0]).nice();
+
+  svg.append('g').attr('class','grid').call(d3.axisLeft(y).tickSize(-iW).tickFormat('').ticks(5));
+  svg.append('g').attr('class','axis').attr('transform',`translate(0,${iH})`)
+    .call(d3.axisBottom(x).ticks(6).tickFormat(v=>v+'辆/人'));
+  svg.append('g').attr('class','axis').call(d3.axisLeft(y).ticks(5).tickFormat(v=>v+'K'));
+  svg.append('text').attr('x',iW/2).attr('y',iH+38).attr('text-anchor','middle').attr('font-size',10).attr('fill','var(--text2)').text('人均月产能（辆/人）');
+  svg.append('text').attr('transform','rotate(-90)').attr('x',-iH/2).attr('y',-46)
+    .attr('text-anchor','middle').attr('font-size',10).attr('fill','var(--text2)').text('人均人力成本 K元/人');
+
+  // Quadrant label
+  svg.append('text').attr('x',iW-4).attr('y',iH-6).attr('text-anchor','end')
+    .attr('font-size',9).attr('fill','#002D28').attr('opacity',.5).text('高效区 →');
+
+  allPts.forEach(d=>{
+    svg.append('circle').attr('cx',x(d.x)).attr('cy',y(d.y)).attr('r',4.5)
+      .attr('fill',d.color).attr('opacity',.72).style('cursor','pointer')
+      .on('mousemove',e=>{
+        showTip(e,`<div class="tt">${d.m} · ${d.c}</div>
+          <div class="tr"><span class="tl">人均产能</span><span class="tv">${d.x} 辆/人</span></div>
+          <div class="tr"><span class="tl">人均成本</span><span class="tv">${d.y} K/人</span></div>
+          <div class="tr"><span class="tl">交付量</span><span class="tv">${d.vol} 辆</span></div>`);
+      }).on('mouseleave',hideTip);
+  });
+
+  // Legend
+  [{c:'#CEA472',l:'浦东'},{c:'#00726D',l:'青浦'}].forEach((item,i)=>{
+    svg.append('circle').attr('cx',i*70+20).attr('cy',-8).attr('r',4).attr('fill',item.c);
+    svg.append('text').attr('x',i*70+28).attr('y',-4).attr('font-size',9).attr('fill','var(--text2)').text(item.l);
+  });
+})();
+// ═══════════════════════════════════════════════
+function drawCPDLines(elId, comps, volArr) {
+  const el = document.getElementById(elId);
+  const W = el.offsetWidth||560, H = 260, m = {top:14,right:14,bottom:34,left:60};
+  const iW=W-m.left-m.right, iH=H-m.top-m.bottom;
+  const svg = d3.select(`#${elId}`).append('svg').attr('width',W).attr('height',H)
+    .append('g').attr('transform',`translate(${m.left},${m.top})`);
+
+  const allV = [...comps.biz,...comps.labor,...comps.pdi,...comps.venue].filter(v=>v!=null&&v>0);
+  const x = d3.scalePoint().domain(MONTHS).range([0,iW]).padding(.2);
+  const y = d3.scaleLinear().domain([0,d3.max(allV)*1.15]).range([iH,0]).nice();
+
+  svg.append('g').attr('class','grid').call(d3.axisLeft(y).tickSize(-iW).tickFormat('').ticks(5));
+  svg.append('g').attr('class','axis').attr('transform',`translate(0,${iH})`)
+    .call(d3.axisBottom(x).tickSize(0)).selectAll('text').attr('dy','1.2em').style('font-size','9px');
+  svg.append('g').attr('class','axis').call(d3.axisLeft(y).ticks(5).tickFormat(v=>d3.format(',d')(v)));
+
+  const series = [
+    {key:'biz',color:'#CEA472',label:'业务费用'},
+    {key:'labor',color:'#DFC0A0',label:'人力成本'},
+    {key:'venue',color:'#00726D',label:'阵地运营'},
+    {key:'pdi',color:'#AAAAAA',label:'PDI'},
+  ];
+  series.forEach(s=>{
+    const pts = comps[s.key].map((v,i)=>({v,i,m:MONTHS[i]})).filter(d=>d.v!=null&&d.v>0);
+    svg.append('path').datum(pts).attr('fill','none').attr('stroke',s.color).attr('stroke-width',2)
+      .attr('d',d3.line().x(d=>x(d.m)).y(d=>y(d.v)).curve(d3.curveMonotoneX));
+    svg.selectAll(null).data(pts).enter().append('circle')
+      .attr('cx',d=>x(d.m)).attr('cy',d=>y(d.v)).attr('r',2.5)
+      .attr('fill','#fff').attr('stroke',s.color).attr('stroke-width',1.5)
+      .on('mousemove',(e,d)=>{
+        showTip(e,`<div class="tt">${d.m} · ${s.label}</div>
+          <div class="tr"><span class="tl">CPD</span><span class="tv">${fmtN(d.v)} 元/辆</span></div>
+          <div class="tr"><span class="tl">交付量</span><span class="tv g">${volArr[d.i].toLocaleString()} 辆</span></div>`);
+      }).on('mouseleave',hideTip);
+  });
+}
+drawCPDLines('c4pd', CC.pd, VOL_PD);
+drawCPDLines('c4qp', CC.qp, VOL_QP);
+
+// ═══════════════════════════════════════════════
+//  CHART 5: Biz cost scatter + regression
+// ═══════════════════════════════════════════════
+(function(){
+  const el = document.getElementById('c5');
+  const W = el.offsetWidth||560, H = 280, m = {top:14,right:20,bottom:50,left:60};
+  const iW=W-m.left-m.right, iH=H-m.top-m.bottom;
+  const svg = d3.select('#c5').append('svg').attr('width',W).attr('height',H)
+    .append('g').attr('transform',`translate(${m.left},${m.top})`);
+
+  const pdPts = MONTHS.map((_,i)=>({vol:VOL_PD[i],cost:PD.biz[i],m:MONTHS[i],c:'浦东',color:'#CEA472'}));
+  const qpPts = MONTHS.map((_,i)=>QP.biz[i]==null?null:({vol:VOL_QP[i],cost:QP.biz[i],m:MONTHS[i],c:'青浦',color:'#00726D'})).filter(Boolean);
+  const allPts = [...pdPts,...qpPts];
+
+  const x = d3.scaleLinear().domain([0,d3.max(allPts,d=>d.vol)*1.08]).range([0,iW]).nice();
+  const y = d3.scaleLinear().domain([0,d3.max(allPts,d=>d.cost)*1.1]).range([iH,0]).nice();
+
+  svg.append('g').attr('class','grid').call(d3.axisLeft(y).tickSize(-iW).tickFormat('').ticks(5));
+  svg.append('g').attr('class','axis').attr('transform',`translate(0,${iH})`)
+    .call(d3.axisBottom(x).ticks(6).tickFormat(v=>v+'辆'));
+  svg.append('g').attr('class','axis').call(d3.axisLeft(y).ticks(5).tickFormat(v=>v+'K'));
+  svg.append('text').attr('x',iW/2).attr('y',iH+40).attr('text-anchor','middle')
+    .attr('font-size',10).attr('fill','var(--text2)').text('月交付量（辆）');
+  svg.append('text').attr('transform','rotate(-90)').attr('x',-iH/2).attr('y',-52)
+    .attr('text-anchor','middle').attr('font-size',10).attr('fill','var(--text2)').text('业务费用（K元）');
+
+  function linReg(pts){
+    const n=pts.length, sx=pts.reduce((s,d)=>s+d.vol,0), sy=pts.reduce((s,d)=>s+d.cost,0);
+    const sxy=pts.reduce((s,d)=>s+d.vol*d.cost,0), sx2=pts.reduce((s,d)=>s+d.vol*d.vol,0);
+    const b=(n*sxy-sx*sy)/(n*sx2-sx*sx), a=(sy-b*sx)/n;
+    return {a,b};
+  }
+
+  [[pdPts,'#E5C9A3'],[qpPts,'#7FC4C2']].forEach(([pts,color])=>{
+    const r=linReg(pts);
+    const xMin=d3.min(pts,d=>d.vol), xMax=d3.max(pts,d=>d.vol);
+    svg.append('line').attr('x1',x(xMin)).attr('y1',y(r.a+r.b*xMin))
+      .attr('x2',x(xMax)).attr('y2',y(r.a+r.b*xMax))
+      .attr('stroke',color).attr('stroke-width',2).attr('stroke-dasharray','5 3');
+  });
+
+  allPts.forEach(d=>{
+    svg.append('circle').attr('cx',x(d.vol)).attr('cy',y(d.cost))
+      .attr('r',5).attr('fill',d.color).attr('opacity',.75).style('cursor','pointer')
+      .on('mousemove',e=>{
+        showTip(e,`<div class="tt">${d.m} · ${d.c}</div>
+          <div class="tr"><span class="tl">交付量</span><span class="tv">${d.vol.toLocaleString()} 辆</span></div>
+          <div class="tr"><span class="tl">业务费用</span><span class="tv">${d.cost.toFixed(1)} K</span></div>
+          <div class="tr"><span class="tl">业务CPD</span><span class="tv">${Math.round(d.cost/d.vol*1000)} 元/辆</span></div>`);
+      }).on('mouseleave',hideTip);
+  });
+
+  // Legend
+  svg.append('circle').attr('cx',iW-80).attr('cy',-4).attr('r',5).attr('fill','#CEA472');
+  svg.append('text').attr('x',iW-72).attr('y',0).attr('font-size',9).attr('fill','var(--text2)').text('浦东');
+  svg.append('circle').attr('cx',iW-40).attr('cy',-4).attr('r',5).attr('fill','#00726D');
+  svg.append('text').attr('x',iW-32).attr('y',0).attr('font-size',9).attr('fill','var(--text2)').text('青浦');
+})();
+
+// ═══════════════════════════════════════════════
+//  CHART 6: Venue dilution curve
+// ═══════════════════════════════════════════════
+(function(){
+  const el = document.getElementById('c6');
+  const W = el.offsetWidth||560, H = 280, m = {top:14,right:20,bottom:50,left:68};
+  const iW=W-m.left-m.right, iH=H-m.top-m.bottom;
+  const svg = d3.select('#c6').append('svg').attr('width',W).attr('height',H)
+    .append('g').attr('transform',`translate(${m.left},${m.top})`);
+
+  const pdPts = MONTHS.map((_,i)=>({vol:VOL_PD[i],cpd:CC.pd.venue[i],m:MONTHS[i]}));
+  // QP: exclude anomaly 25.08 (venue=98.91K clearly wrong)
+  const qpPts = MONTHS.map((_,i)=>({vol:VOL_QP[i],cpd:CC.qp.venue[i],m:MONTHS[i],anom:i===7}));
+
+  const allV = [...pdPts,...qpPts].filter(d=>!d.anom&&d.cpd).map(d=>d.cpd);
+  const maxVol = d3.max([...pdPts,...qpPts],d=>d.vol)*1.1;
+
+  const x = d3.scaleLinear().domain([0,maxVol]).range([0,iW]).nice();
+  const y = d3.scaleLinear().domain([0,d3.max(allV)*1.1]).range([iH,0]).nice();
+
+  svg.append('g').attr('class','grid').call(d3.axisLeft(y).tickSize(-iW).tickFormat('').ticks(5));
+  svg.append('g').attr('class','axis').attr('transform',`translate(0,${iH})`)
+    .call(d3.axisBottom(x).ticks(6).tickFormat(v=>v+'辆'));
+  svg.append('g').attr('class','axis').call(d3.axisLeft(y).ticks(5).tickFormat(v=>d3.format(',d')(v)));
+  svg.append('text').attr('x',iW/2).attr('y',iH+40).attr('text-anchor','middle')
+    .attr('font-size',10).attr('fill','var(--text2)').text('月交付量（辆）');
+  svg.append('text').attr('transform','rotate(-90)').attr('x',-iH/2).attr('y',-60)
+    .attr('text-anchor','middle').attr('font-size',10).attr('fill','var(--text2)').text('阵地CPD（元/辆）');
+
+  // Theoretical curve y = K/x
+  const avgPDvenue = d3.mean(PD.venue);
+  const avgQPvenue = d3.mean(QP.venue.filter((_,i)=>i!==7)); // exclude anomaly
+  const curveVols = d3.range(80,maxVol,20);
+  [[avgPDvenue,'#E5C9A3'],[avgQPvenue,'#7FC4C2']].forEach(([K,color])=>{
+    const pts = curveVols.map(v=>({v,cpd:K/v*1000}));
+    svg.append('path').datum(pts).attr('fill','none').attr('stroke',color).attr('stroke-width',2).attr('opacity',.7)
+      .attr('d',d3.line().x(d=>x(d.v)).y(d=>y(d.cpd)).curve(d3.curveBasis));
+  });
+
+  // Actual points
+  [{pts:pdPts,color:'#CEA472',label:'浦东'},{pts:qpPts,color:'#00726D',label:'青浦'}].forEach(({pts,color,label})=>{
+    pts.forEach(d=>{
+      if(d.anom||!d.cpd) return;
+      svg.append('circle').attr('cx',x(d.vol)).attr('cy',y(d.cpd)).attr('r',4.5)
+        .attr('fill',color).attr('opacity',.75).style('cursor','pointer')
+        .on('mousemove',e=>{
+          showTip(e,`<div class="tt">${d.m} · ${label} 阵地</div>
+            <div class="tr"><span class="tl">交付量</span><span class="tv">${d.vol} 辆</span></div>
+            <div class="tr"><span class="tl">阵地CPD</span><span class="tv">${fmtN(d.cpd)} 元/辆</span></div>`);
+        }).on('mouseleave',hideTip);
+    });
+  });
+
+  // 青浦 anomaly
+  svg.append('circle').attr('cx',x(VOL_QP[7])).attr('cy',y(CC.qp.venue[7])).attr('r',5)
+    .attr('fill','none').attr('stroke','var(--red)').attr('stroke-width',1.5).attr('stroke-dasharray','3 2');
+  svg.append('text').attr('x',x(VOL_QP[7])+7).attr('y',y(CC.qp.venue[7])+3)
+    .attr('font-size',8.5).attr('fill','var(--red)').text('25.08异常');
+})();
+
+// ═══════════════════════════════════════════════
+//  CHART 7: Month-over-Month CPD change %
+// ═══════════════════════════════════════════════
+(function(){
+  const el = document.getElementById('c7');
+  const W = el.offsetWidth||1100, H = 300, m = {top:20,right:24,bottom:38,left:60};
+  const iW=W-m.left-m.right, iH=H-m.top-m.bottom;
+  const svg = d3.select('#c7').append('svg').attr('width',W).attr('height',H)
+    .append('g').attr('transform',`translate(${m.left},${m.top})`);
+
+  const months15 = MONTHS.slice(1);
+  // positive = CPD improved (went down); negative = CPD worsened (went up)
+  const momPD = months15.map((_,j)=>{
+    const i=j+1;
+    if(!CPD_PD[i]||!CPD_PD[i-1]) return null;
+    return Math.round((CPD_PD[i-1]-CPD_PD[i])/CPD_PD[i-1]*100);
+  });
+  const momQP = months15.map((_,j)=>{
+    const i=j+1;
+    if(!CPD_QP[i]||!CPD_QP[i-1]) return null;
+    return Math.round((CPD_QP[i-1]-CPD_QP[i])/CPD_QP[i-1]*100);
+  });
+
+  const allVals = [...momPD,...momQP].filter(v=>v!=null);
+  const yMax = Math.max(d3.max(allVals),30)*1.1;
+  const yMin = Math.min(d3.min(allVals),-30)*1.1;
+
+  const x0 = d3.scaleBand().domain(months15).range([0,iW]).padding(0.2);
+  const x1 = d3.scaleBand().domain(['pd','qp']).range([0,x0.bandwidth()]).padding(0.08);
+  const y = d3.scaleLinear().domain([yMin,yMax]).range([iH,0]).nice();
+
+  svg.append('g').attr('class','grid').call(d3.axisLeft(y).tickSize(-iW).tickFormat('').ticks(8));
+  svg.append('g').attr('class','axis').attr('transform',`translate(0,${iH})`)
+    .call(d3.axisBottom(x0).tickSize(0)).selectAll('text').attr('dy','1.2em').style('font-size','9px');
+  svg.append('g').attr('class','axis').call(d3.axisLeft(y).ticks(8).tickFormat(v=>v+'%'));
+
+  // Zero line
+  svg.append('line').attr('x1',0).attr('x2',iW).attr('y1',y(0)).attr('y2',y(0))
+    .attr('stroke','var(--text2)').attr('stroke-width',1);
+
+  // Labels
+  svg.append('text').attr('x',4).attr('y',y(0)-8).attr('font-size',9).attr('fill','var(--green)').text('改善↑');
+  svg.append('text').attr('x',4).attr('y',y(0)+16).attr('font-size',9).attr('fill','var(--red)').text('恶化↓');
+
+  months15.forEach((mo,j)=>{
+    [{val:momPD[j],key:'pd',color:'#CEA472'},{val:momQP[j],key:'qp',color:'#00726D'}].forEach(({val,key,color})=>{
+      if(val==null) return;
+      const xPos = x0(mo)+x1(key);
+      const fillColor = val>=0?color:`var(--red)`;
+      svg.append('rect').attr('x',xPos).attr('y',val>=0?y(val):y(0))
+        .attr('width',x1.bandwidth()).attr('height',Math.abs(y(0)-y(val)))
+        .attr('fill',fillColor).attr('opacity',val>=0?.8:.6).attr('rx',2)
+        .on('mousemove',e=>{
+          const prevIdx = j; const curIdx = j+1;
+          const label = key==='pd'?'浦东':'青浦';
+          const prev = key==='pd'?CPD_PD[prevIdx]:CPD_QP[prevIdx];
+          const cur = key==='pd'?CPD_PD[curIdx]:CPD_QP[curIdx];
+          showTip(e,`<div class="tt">${MONTHS[prevIdx]}→${mo} · ${label}</div>
+            <div class="tr"><span class="tl">环比变化</span><span class="tv ${val>=0?'g':'r'}">${val>=0?'↓':'↑'}${Math.abs(val)}%</span></div>
+            <div class="tr"><span class="tl">上月CPD</span><span class="tv">${fmtN(prev)} 元</span></div>
+            <div class="tr"><span class="tl">本月CPD</span><span class="tv">${fmtN(cur)} 元</span></div>`);
+        }).on('mouseleave',hideTip);
+    });
+  });
+})();
+
+// ═══════════════════════════════════════════════
+//  CHART 8: Quarterly YoY
+// ═══════════════════════════════════════════════
+(function(){
+  const el = document.getElementById('c8');
+  const W = el.offsetWidth||1100, H = 320, m = {top:24,right:72,bottom:40,left:72};
+  const iW=W-m.left-m.right, iH=H-m.top-m.bottom;
+  const svg = d3.select('#c8').append('svg').attr('width',W).attr('height',H)
+    .append('g').attr('transform',`translate(${m.left},${m.top})`);
+
+  const qs = [
+    {q:'25Q1',idx:[0,1,2]},{q:'25Q2',idx:[3,4,5]},{q:'25Q3',idx:[6,7,8]},{q:'25Q4',idx:[9,10,11]},
+    {q:'26Q1',idx:[12,13,14]},{q:'26Q2*',idx:[15]},
+  ];
+  const qData = qs.map(q=>{
+    const pVols = q.idx.reduce((s,i)=>s+VOL_PD[i],0);
+    const qVols = q.idx.reduce((s,i)=>s+VOL_QP[i],0);
+    const pCPDs = q.idx.map(i=>CPD_PD[i]).filter(v=>v!=null);
+    const qCPDs = q.idx.map(i=>CPD_QP[i]).filter(v=>v!=null);
+    return {
+      q:q.q, pVol:pVols, qVol:qVols, total:pVols+qVols,
+      pCPD:pCPDs.length?Math.round(d3.mean(pCPDs)):null,
+      qCPD:qCPDs.length?Math.round(d3.mean(qCPDs)):null,
+    };
+  });
+
+  const maxVol = d3.max(qData,d=>d.total)*1.15;
+  const allCPDs = qData.flatMap(d=>[d.pCPD,d.qCPD]).filter(v=>v!=null);
+
+  const x0 = d3.scaleBand().domain(qData.map(d=>d.q)).range([0,iW]).padding(0.25);
+  const x1 = d3.scaleBand().domain(['pd','qp']).range([0,x0.bandwidth()]).padding(0.08);
+  const yVol = d3.scaleLinear().domain([0,maxVol]).range([iH,0]).nice();
+  const yCPD = d3.scaleLinear().domain([0,d3.max(allCPDs)*1.15]).range([iH,0]).nice();
+
+  svg.append('g').attr('class','grid').call(d3.axisLeft(yCPD).tickSize(-iW).tickFormat('').ticks(5));
+  svg.append('g').attr('class','axis').attr('transform',`translate(0,${iH})`)
+    .call(d3.axisBottom(x0).tickSize(0)).selectAll('text').attr('dy','1.2em');
+  svg.append('g').attr('class','axis').call(d3.axisLeft(yCPD).ticks(5).tickFormat(v=>d3.format(',d')(v)));
+  svg.append('g').attr('class','axis').attr('transform',`translate(${iW},0)`)
+    .call(d3.axisRight(yVol).ticks(5).tickFormat(v=>d3.format(',d')(v)+'辆'));
+
+  svg.append('text').attr('transform','rotate(-90)').attr('x',-iH/2).attr('y',-60)
+    .attr('text-anchor','middle').attr('font-size',10).attr('fill','var(--text2)').text('季均CPD 元/辆');
+  svg.append('text').attr('x',iW+58).attr('y',-10)
+    .attr('text-anchor','middle').attr('font-size',10).attr('fill','var(--text2)').text('季交付量 辆');
+
+  // 2026 shade
+  const x26q = x0('26Q1');
+  svg.append('rect').attr('x',x26q-6).attr('y',0).attr('width',iW-x26q+6)
+    .attr('height',iH).attr('fill','rgba(206,164,114,.05)');
+
+  // Volume bars (stacked PD+QP)
+  qData.forEach(d=>{
+    const xb = x0(d.q);
+    // PD bar
+    svg.append('rect').attr('x',xb).attr('width',x0.bandwidth())
+      .attr('y',yVol(d.pVol)).attr('height',iH-yVol(d.pVol))
+      .attr('fill', d.q.startsWith('26')?'#CEA472':'#E5C9A3').attr('opacity',.75).attr('rx',2);
+    // QP bar stacked on top
+    svg.append('rect').attr('x',xb).attr('width',x0.bandwidth())
+      .attr('y',yVol(d.total)).attr('height',yVol(d.pVol)-yVol(d.total))
+      .attr('fill', d.q.startsWith('26')?'#00726D':'#7FC4C2').attr('opacity',.75).attr('rx',2);
+    // Volume label
+    svg.append('text').attr('x',xb+x0.bandwidth()/2).attr('y',yVol(d.total)-5)
+      .attr('text-anchor','middle').attr('font-size',9.5).attr('font-weight','600').attr('fill','var(--text1)')
+      .text(d3.format(',d')(d.total));
+  });
+
+  // CPD lines
+  [{key:'pCPD',color:'#CEA472',label:'浦东'},{key:'qCPD',color:'#00726D',label:'青浦'}].forEach(s=>{
+    const pts = qData.filter(d=>d[s.key]!=null).map(d=>({q:d.q,v:d[s.key]}));
+    svg.append('path').datum(pts).attr('fill','none').attr('stroke',s.color).attr('stroke-width',2.5)
+      .attr('d',d3.line().x(d=>x0(d.q)+x0.bandwidth()/2).y(d=>yCPD(d.v)).curve(d3.curveMonotoneX));
+    pts.forEach(d=>{
+      svg.append('circle').attr('cx',x0(d.q)+x0.bandwidth()/2).attr('cy',yCPD(d.v))
+        .attr('r',4).attr('fill','#fff').attr('stroke',s.color).attr('stroke-width',2.5)
+        .on('mousemove',e=>{
+          showTip(e,`<div class="tt">${d.q} · ${s.label}</div>
+            <div class="tr"><span class="tl">季均CPD</span><span class="tv">${fmtN(d.v)} 元/辆</span></div>`);
+        }).on('mouseleave',hideTip);
+      // Value label
+      svg.append('text').attr('x',x0(d.q)+x0.bandwidth()/2+18).attr('y',yCPD(d.v)+4)
+        .attr('font-size',9).attr('fill',s.color).text(fmtN(d.v));
+    });
+  });
+})();
+
+// ═══════════════════════════════════════════════
+//  CHART 9: PDI dual-axis
+// ═══════════════════════════════════════════════
+(function(){
+  const el = document.getElementById('c9');
+  const W = el.offsetWidth||1100, H = 300, m = {top:20,right:72,bottom:38,left:64};
+  const iW=W-m.left-m.right, iH=H-m.top-m.bottom;
+  const svg = d3.select('#c9').append('svg').attr('width',W).attr('height',H)
+    .append('g').attr('transform',`translate(${m.left},${m.top})`);
+
+  const pdPDI_K = PD.pdi;
+  const qpPDI_K = QP.pdi.map(v=>Math.max(0,v));
+  const pdPDI_CPD = MONTHS.map((_,i)=>toCPD(pdPDI_K[i],VOL_PD[i]));
+  const qpPDI_CPD = MONTHS.map((_,i)=>toCPD(qpPDI_K[i],VOL_QP[i]));
+
+  const maxK = d3.max([...pdPDI_K,...qpPDI_K])*1.15;
+  const allCPDs = [...pdPDI_CPD,...qpPDI_CPD].filter(v=>v!=null);
+
+  const x = d3.scaleBand().domain(MONTHS).range([0,iW]).padding(0.25);
+  const x1 = d3.scaleBand().domain(['pd','qp']).range([0,x.bandwidth()]).padding(0.08);
+  const yK = d3.scaleLinear().domain([0,maxK]).range([iH,0]).nice();
+  const yCPD = d3.scaleLinear().domain([0,d3.max(allCPDs)*1.15]).range([iH,0]).nice();
+
+  svg.append('g').attr('class','grid').call(d3.axisLeft(yCPD).tickSize(-iW).tickFormat('').ticks(5));
+  svg.append('g').attr('class','axis').attr('transform',`translate(0,${iH})`)
+    .call(d3.axisBottom(x).tickSize(0)).selectAll('text').attr('dy','1.2em').style('font-size','9.5px');
+  svg.append('g').attr('class','axis').call(d3.axisLeft(yCPD).ticks(5).tickFormat(v=>d3.format(',d')(v)));
+  svg.append('g').attr('class','axis').attr('transform',`translate(${iW},0)`)
+    .call(d3.axisRight(yK).ticks(5).tickFormat(v=>v+'K'));
+
+  svg.append('text').attr('transform','rotate(-90)').attr('x',-iH/2).attr('y',-52)
+    .attr('text-anchor','middle').attr('font-size',10).attr('fill','var(--text2)').text('PDI CPD 元/辆');
+  svg.append('text').attr('x',iW+58).attr('y',-10)
+    .attr('text-anchor','middle').attr('font-size',10).attr('fill','var(--text2)').text('PDI费用 K元');
+
+  // Highlight anomaly month 25.10 (index 9)
+  const anomX = x('25.10');
+  svg.append('rect').attr('x',anomX-2).attr('y',0).attr('width',x.bandwidth()+4).attr('height',iH)
+    .attr('fill','rgba(192,97,74,.08)').attr('rx',3);
+  svg.append('text').attr('x',anomX+x.bandwidth()/2).attr('y',-6)
+    .attr('text-anchor','middle').attr('font-size',9).attr('fill','var(--red)').text('异常↑');
+
+  // Bars
+  MONTHS.forEach((mo,i)=>{
+    [{val:pdPDI_K[i],key:'pd',color:'#E5C9A3',label:'浦东'},{val:qpPDI_K[i],key:'qp',color:'#7FC4C2',label:'青浦'}].forEach(({val,key,color,label})=>{
+      svg.append('rect').attr('x',x(mo)+x1(key)).attr('y',yK(val))
+        .attr('width',x1.bandwidth()).attr('height',iH-yK(val))
+        .attr('fill',color).attr('rx',2)
+        .on('mousemove',e=>{
+          showTip(e,`<div class="tt">${mo} · ${label} PDI</div>
+            <div class="tr"><span class="tl">PDI费用</span><span class="tv">${val.toFixed(1)} K元</span></div>
+            <div class="tr"><span class="tl">PDI CPD</span><span class="tv">${fmtN(key==='pd'?pdPDI_CPD[i]:qpPDI_CPD[i])} 元/辆</span></div>`);
+        }).on('mouseleave',hideTip);
+    });
+  });
+
+  // CPD lines
+  [{data:pdPDI_CPD,color:'#CEA472',label:'浦东'},{data:qpPDI_CPD,color:'#00726D',label:'青浦'}].forEach(s=>{
+    const pts = s.data.map((v,i)=>({v,i,m:MONTHS[i]})).filter(d=>d.v!=null);
+    svg.append('path').datum(pts).attr('fill','none').attr('stroke',s.color).attr('stroke-width',2.5)
+      .attr('d',d3.line().x(d=>x(d.m)+x.bandwidth()/2).y(d=>yCPD(d.v)).curve(d3.curveMonotoneX));
+  });
+})();
+
+// ═══════════════════════════════════════════════
+//  CHART 9b: CPD驱动因子分解（方法A 协方差分解）
+// ═══════════════════════════════════════════════
+(function(){
+  const el = document.getElementById('c_reg');
+  const W = el.offsetWidth||900, H = 400, m = {top:36,right:24,bottom:28,left:8};
+  const iW = W - m.left - m.right;
+  const iH = H - m.top  - m.bottom;
+  const svg = d3.select('#c_reg').append('svg').attr('width',W).attr('height',H)
+    .append('g').attr('transform',`translate(${m.left},${m.top})`);
+
+  // ── 统计工具 ──────────────────────────────────
+  function _mean(a){ return a.reduce((s,v)=>s+v,0)/a.length; }
+  function _cov(x,y){
+    const mx=_mean(x), my=_mean(y);
+    return x.reduce((s,v,i)=>s+(v-mx)*(y[i]-my),0)/(x.length-1);
+  }
+  function _var(a){ return _cov(a,a); }
+
+  // ── 8个分项定义 ───────────────────────────────
+  const FACTOR_DEFS = [
+    {key:'venue',  label:'阵地运营', color:'#00726D'},
+    {key:'labor',  label:'人力成本', color:'#DFC0A0'},
+    {key:'daily',  label:'日常运营', color:'#8B9E8B'},
+    {key:'it',     label:'IT及行政', color:'#7FC4C2'},
+    {key:'pdi',    label:'PDI运营',  color:'#AAAAAA'},
+    {key:'care',   label:'客户关怀', color:'#E5C9A3'},
+    {key:'promo',  label:'交付促进', color:'#CEA472'},
+    {key:'talent', label:'人才培养', color:'#CCCCCC'},
+  ];
+
+  // ── 协方差分解核心 ────────────────────────────
+  // cost为null时视为0（未发生支出）
+  function cpd0(cost, vol){ return (vol && vol>0) ? (cost||0)/vol*1000 : 0; }
+
+  function covDecomp(rawCost, vol) {
+    // rawCost: { promo:[], care:[], daily:[], it:[], talent:[], labor:[], pdi:[], venue:[] }
+    // 分项CPD数组（元/辆）
+    const compCPD = {};
+    for(const {key} of FACTOR_DEFS){
+      compCPD[key] = MONTHS.map((_,i)=>cpd0(rawCost[key][i], vol[i]));
+    }
+    // 总CPD = Σ分项CPD（仅vol>0的月份）
+    const totalCPD = MONTHS.map((_,i)=>{
+      if(!vol[i]) return null;
+      return FACTOR_DEFS.reduce((s,f)=>s+compCPD[f.key][i], 0);
+    });
+    const valid = MONTHS.map((_,i)=>i).filter(i=>totalCPD[i]!=null);
+    const tot = valid.map(i=>totalCPD[i]);
+    const varTot = _var(tot);
+    const meanTot = _mean(tot);
+
+    const results = FACTOR_DEFS.map(({key,label,color})=>{
+      const x = valid.map(i=>compCPD[key][i]);
+      const contrib = _cov(x,tot)/varTot*100;   // 100元CPD中的贡献
+      const meanV   = _mean(x);
+      const meanPct = meanV/meanTot*100;
+      return {key, label, color, contrib, meanV, meanPct};
+    });
+    results.sort((a,b)=>b.contrib-a.contrib);   // 降序
+    return {results, meanTot, n:valid.length};
+  }
+
+  // ── 数据准备 ──────────────────────────────────
+  const pdRaw = {
+    promo:PD_PROMO, care:PD_CARE, daily:PD_DAILY, it:PD_IT,
+    talent:PD_TALENT, labor:PD.labor, pdi:PD.pdi, venue:PD.venue
+  };
+  const qpRaw = {
+    promo:QP_PROMO, care:QP_CARE, daily:QP_DAILY, it:QP_IT,
+    talent:QP_TALENT, labor:QP.labor, pdi:QP.pdi, venue:QP.venue
+  };
+  const pdRes = covDecomp(pdRaw, VOL_PD);
+  const qpRes = covDecomp(qpRaw, VOL_QP);
+
+  // ── 布局 ─────────────────────────────────────
+  const panels = [
+    {label:'浦东交付中心', res:pdRes, x:0},
+    {label:'青浦交付中心', res:qpRes, x:iW/2+10},
+  ];
+  const pW = iW/2 - 14;      // 单侧面板宽
+  const leftLabel = 88;       // 因子名称留白
+  const barMaxW   = pW - leftLabel - 52;  // 条形最大宽度
+  const rowH = iH / 8;        // 8行
+
+  // X轴域：−20 ~ 80（允许负值条形）
+  const xDom = [-20, 82];
+  function barScale(v){ return (v-xDom[0])/(xDom[1]-xDom[0])*barMaxW; }
+  const zeroX = barScale(0);  // 0刻度位置
+
+  panels.forEach(({label, res:{results, meanTot, n}, x})=>{
+    const g = svg.append('g').attr('transform',`translate(${x},0)`);
+
+    // 面板标题
+    g.append('text').attr('x', pW/2).attr('y', -18)
+      .attr('text-anchor','middle').attr('font-size',12).attr('font-weight','700')
+      .attr('fill','var(--text1)').text(label);
+    g.append('text').attr('x', pW/2).attr('y', -4)
+      .attr('text-anchor','middle').attr('font-size',10)
+      .attr('fill','var(--text2)')
+      .text(`均值CPD ${Math.round(meanTot).toLocaleString()}元/辆 · N=${n}月`);
+
+    // 零线
+    g.append('line')
+      .attr('x1', leftLabel+zeroX).attr('x2', leftLabel+zeroX)
+      .attr('y1', 0).attr('y2', iH)
+      .attr('stroke','var(--border)').attr('stroke-width',1);
+
+    // 各因子行
+    results.forEach(({label:fl, color, contrib, meanV, meanPct}, ri)=>{
+      const y0 = ri * rowH + rowH*0.12;
+      const barH = rowH * 0.62;
+      const barW = barScale(contrib) - zeroX;  // 可正可负
+      const barX = contrib>=0 ? leftLabel+zeroX : leftLabel+zeroX+barW;
+      const absW = Math.abs(barW);
+
+      // 条形
+      g.append('rect')
+        .attr('x', barX).attr('y', y0)
+        .attr('width', Math.max(0, absW)).attr('height', barH)
+        .attr('fill', contrib>=0 ? color : '#DDDDDD')
+        .attr('rx', 3).attr('opacity', 0.85);
+
+      // 因子名
+      g.append('text').attr('x', leftLabel-6).attr('y', y0+barH/2+3.5)
+        .attr('text-anchor','end').attr('font-size',10.5)
+        .attr('fill','var(--text1)').attr('font-weight','500')
+        .text(fl);
+
+      // 均值CPD小标注（灰色）
+      g.append('text').attr('x', leftLabel-6).attr('y', y0+barH/2+3.5)
+        .attr('text-anchor','end').attr('font-size',8.5)
+        .attr('fill','var(--text2)')
+        .attr('dy', 11)
+        .text(`均${Math.round(meanV)}元 · ${meanPct.toFixed(0)}%`);
+
+      // 贡献数值标注
+      const labelX = contrib>=0
+        ? barX + absW + 4
+        : barX - 4;
+      const anchor  = contrib>=0 ? 'start' : 'end';
+      const sign    = contrib>=0 ? '+' : '';
+      g.append('text').attr('x', labelX).attr('y', y0+barH/2+4)
+        .attr('text-anchor', anchor).attr('font-size',11).attr('font-weight','700')
+        .attr('fill', contrib>=0 ? color : '#999')
+        .text(`${sign}${contrib.toFixed(1)}元`);
+    });
+
+    // 底部加总验证
+    const checkY = iH + 14;
+    const total = results.reduce((s,r)=>s+r.contrib,0);
+    g.append('text').attr('x',pW/2).attr('y',checkY)
+      .attr('text-anchor','middle').attr('font-size',9.5)
+      .attr('fill','var(--text2)')
+      .text(`合计 ${total.toFixed(1)}元 / 100元 ✓`);
+  });
+
+  // 中间分隔线
+  svg.append('line')
+    .attr('x1', iW/2+2).attr('x2', iW/2+2)
+    .attr('y1',-24).attr('y2',iH+4)
+    .attr('stroke','var(--border)').attr('stroke-width',1).attr('stroke-dasharray','3 3');
+})();
+
+// ═══════════════════════════════════════════════
+//  CHART 9c: CPD因子分解（仅2026年1-4月）
+// ═══════════════════════════════════════════════
+(function(){
+  const el = document.getElementById('c_reg26');
+  if(!el) return;
+  const W = el.offsetWidth||900, H = 400, m = {top:36,right:24,bottom:28,left:8};
+  const iW = W - m.left - m.right;
+  const iH = H - m.top  - m.bottom;
+  const svg = d3.select('#c_reg26').append('svg').attr('width',W).attr('height',H)
+    .append('g').attr('transform',`translate(${m.left},${m.top})`);
+
+  function _mean(a){ return a.reduce((s,v)=>s+v,0)/a.length; }
+  function _cov(x,y){
+    const mx=_mean(x), my=_mean(y);
+    return x.reduce((s,v,i)=>s+(v-mx)*(y[i]-my),0)/(x.length-1);
+  }
+  function _var(a){ return _cov(a,a); }
+
+  const FACTOR_DEFS = [
+    {key:'venue',  label:'阵地运营', color:'#00726D'},
+    {key:'labor',  label:'人力成本', color:'#DFC0A0'},
+    {key:'daily',  label:'日常运营', color:'#8B9E8B'},
+    {key:'it',     label:'IT及行政', color:'#7FC4C2'},
+    {key:'pdi',    label:'PDI运营',  color:'#AAAAAA'},
+    {key:'care',   label:'客户关怀', color:'#E5C9A3'},
+    {key:'promo',  label:'交付促进', color:'#CEA472'},
+    {key:'talent', label:'人才培养', color:'#CCCCCC'},
+  ];
+
+  // 仅取 index 12-15（2026.01-04）
+  const IDX26 = [12,13,14,15];
+
+  function cpd0(cost, vol){ return (vol && vol>0) ? (cost||0)/vol*1000 : 0; }
+
+  function covDecomp26(rawCost, vol) {
+    const compCPD = {};
+    for(const {key} of FACTOR_DEFS){
+      compCPD[key] = IDX26.map(i => cpd0(rawCost[key][i], vol[i]));
+    }
+    const totalCPD = IDX26.map(i => {
+      if(!vol[i]) return null;
+      return FACTOR_DEFS.reduce((s,f) => s + (rawCost[f.key][i]||0)/vol[i]*1000, 0);
+    });
+    const valid = IDX26.map((_,j) => j).filter(j => totalCPD[j] != null);
+    const tot   = valid.map(j => totalCPD[j]);
+
+    // N=4 警告：方差/协方差仍可计算，结果供参考
+    if(tot.length < 3) return null;
+
+    const varTot  = _var(tot);
+    const meanTot = _mean(tot);
+
+    const results = FACTOR_DEFS.map(({key,label,color}) => {
+      const x      = valid.map(j => compCPD[key][j]);
+      const contrib = _cov(x, tot) / varTot * 100;
+      const meanV   = _mean(x);
+      const meanPct = meanV / meanTot * 100;
+      return {key, label, color, contrib, meanV, meanPct};
+    });
+    results.sort((a,b) => b.contrib - a.contrib);
+    return {results, meanTot, n: valid.length};
+  }
+
+  const pdRaw = {
+    promo:PD_PROMO, care:PD_CARE, daily:PD_DAILY, it:PD_IT,
+    talent:PD_TALENT, labor:PD.labor, pdi:PD.pdi, venue:PD.venue
+  };
+  const qpRaw = {
+    promo:QP_PROMO, care:QP_CARE, daily:QP_DAILY, it:QP_IT,
+    talent:QP_TALENT, labor:QP.labor, pdi:QP.pdi, venue:QP.venue
+  };
+  const pdRes = covDecomp26(pdRaw, VOL_PD);
+  const qpRes = covDecomp26(qpRaw, VOL_QP);
+  if(!pdRes || !qpRes) return;
+
+  // ── 逐月明细数据标注（N=4 时直接展示每月分项值，增强可读性）
+  const MONTHS26 = ['26.01','26.02','26.03','26.04'];
+
+  const panels = [
+    {label:'浦东交付中心', res:pdRes, raw:pdRaw, vol:VOL_PD, x:0},
+    {label:'青浦交付中心', res:qpRes, raw:qpRaw, vol:VOL_QP, x:iW/2+10},
+  ];
+  const pW        = iW/2 - 14;
+  const leftLabel = 88;
+  const barMaxW   = pW - leftLabel - 52;
+  const rowH      = iH / 8;
+  const xDom      = [-25, 85];
+  function barScale(v){ return (v-xDom[0])/(xDom[1]-xDom[0])*barMaxW; }
+  const zeroX = barScale(0);
+
+  panels.forEach(({label, res:{results, meanTot, n}, x}) => {
+    const g = svg.append('g').attr('transform',`translate(${x},0)`);
+
+    g.append('text').attr('x', pW/2).attr('y', -18)
+      .attr('text-anchor','middle').attr('font-size',12).attr('font-weight','700')
+      .attr('fill','var(--text1)').text(label);
+    g.append('text').attr('x', pW/2).attr('y', -4)
+      .attr('text-anchor','middle').attr('font-size',10)
+      .attr('fill','var(--text2)')
+      .text(`均值CPD ${Math.round(meanTot).toLocaleString()}元/辆 · N=${n}月 · ⚠ 样本小，结果参考`);
+
+    // 零线
+    g.append('line')
+      .attr('x1', leftLabel+zeroX).attr('x2', leftLabel+zeroX)
+      .attr('y1', 0).attr('y2', iH)
+      .attr('stroke','var(--border)').attr('stroke-width',1);
+
+    results.forEach(({label:fl, color, contrib, meanV, meanPct}, ri) => {
+      const y0   = ri * rowH + rowH*0.12;
+      const barH = rowH * 0.62;
+      const barW = barScale(contrib) - zeroX;
+      const barX = contrib >= 0 ? leftLabel+zeroX : leftLabel+zeroX+barW;
+      const absW = Math.abs(barW);
+
+      g.append('rect')
+        .attr('x', barX).attr('y', y0)
+        .attr('width', Math.max(0, absW)).attr('height', barH)
+        .attr('fill', contrib>=0 ? color : '#DDDDDD')
+        .attr('rx', 3).attr('opacity', 0.85);
+
+      g.append('text').attr('x', leftLabel-6).attr('y', y0+barH/2+3.5)
+        .attr('text-anchor','end').attr('font-size',10.5)
+        .attr('fill','var(--text1)').attr('font-weight','500').text(fl);
+
+      g.append('text').attr('x', leftLabel-6).attr('y', y0+barH/2+3.5)
+        .attr('text-anchor','end').attr('font-size',8.5)
+        .attr('fill','var(--text2)').attr('dy', 11)
+        .text(`均${Math.round(meanV)}元 · ${meanPct.toFixed(0)}%`);
+
+      const labelX = contrib>=0 ? barX+absW+4 : barX-4;
+      const anchor = contrib>=0 ? 'start' : 'end';
+      const sign   = contrib>=0 ? '+' : '';
+      g.append('text').attr('x', labelX).attr('y', y0+barH/2+4)
+        .attr('text-anchor', anchor).attr('font-size',11).attr('font-weight','700')
+        .attr('fill', contrib>=0 ? color : '#999')
+        .text(`${sign}${contrib.toFixed(1)}元`);
+    });
+
+    const total = results.reduce((s,r)=>s+r.contrib,0);
+    g.append('text').attr('x',pW/2).attr('y',iH+14)
+      .attr('text-anchor','middle').attr('font-size',9.5)
+      .attr('fill','var(--text2)')
+      .text(`合计 ${total.toFixed(1)}元 / 100元 ✓`);
+  });
+
+  svg.append('line')
+    .attr('x1', iW/2+2).attr('x2', iW/2+2)
+    .attr('y1',-24).attr('y2',iH+4)
+    .attr('stroke','var(--border)').attr('stroke-width',1).attr('stroke-dasharray','3 3');
+})();
+
+// ═══════════════════════════════════════════════
+//  CHART 10: CPD gap tracking
+// ═══════════════════════════════════════════════
+(function(){
+  const el = document.getElementById('c10');
+  const W = el.offsetWidth||1100, H = 280, m = {top:20,right:24,bottom:38,left:72};
+  const iW=W-m.left-m.right, iH=H-m.top-m.bottom;
+  const svg = d3.select('#c10').append('svg').attr('width',W).attr('height',H)
+    .append('g').attr('transform',`translate(${m.left},${m.top})`);
+
+  const gaps = MONTHS.map((_,i)=>CPD_PD[i]&&CPD_QP[i]?CPD_PD[i]-CPD_QP[i]:null);
+  const validGaps = gaps.filter(v=>v!=null);
+  const ext = Math.max(Math.abs(d3.min(validGaps)), d3.max(validGaps))*1.15;
+
+  const x = d3.scalePoint().domain(MONTHS).range([0,iW]).padding(.25);
+  const y = d3.scaleLinear().domain([-ext,ext]).range([iH,0]).nice();
+
+  svg.append('g').attr('class','grid').call(d3.axisLeft(y).tickSize(-iW).tickFormat('').ticks(8));
+  svg.append('g').attr('class','axis').attr('transform',`translate(0,${iH})`)
+    .call(d3.axisBottom(x).tickSize(0)).selectAll('text').attr('dy','1.2em').style('font-size','9.5px');
+  svg.append('g').attr('class','axis').call(d3.axisLeft(y).ticks(8).tickFormat(v=>d3.format(',d')(v)));
+
+  // Zero line
+  svg.append('line').attr('x1',0).attr('x2',iW).attr('y1',y(0)).attr('y2',y(0))
+    .attr('stroke','var(--text2)').attr('stroke-width',1.5);
+  svg.append('text').attr('x',iW-4).attr('y',y(0)-5).attr('text-anchor','end')
+    .attr('font-size',9).attr('fill','var(--text2)').text('差值=0（两中心相同）');
+
+  // Zones labels
+  svg.append('text').attr('x',6).attr('y',y(ext*0.6)).attr('font-size',9).attr('fill','#CEA472').text('↑浦东更贵');
+  svg.append('text').attr('x',6).attr('y',y(-ext*0.6)).attr('font-size',9).attr('fill','#00726D').text('↓青浦更贵');
+
+  // Area fill
+  const pts = gaps.map((v,i)=>({m:MONTHS[i],v})).filter(d=>d.v!=null);
+  const area = d3.area().x(d=>x(d.m)).y0(y(0)).y1(d=>y(d.v)).curve(d3.curveMonotoneX);
+  const posData = pts.map(d=>({m:d.m,v:Math.max(0,d.v)}));
+  const negData = pts.map(d=>({m:d.m,v:Math.min(0,d.v)}));
+  svg.append('path').datum(posData).attr('fill','rgba(206,164,114,.18)').attr('d',area);
+  svg.append('path').datum(negData).attr('fill','rgba(0,114,109,.18)').attr('d',area);
+
+  // Line
+  svg.append('path').datum(pts).attr('fill','none').attr('stroke','var(--text1)').attr('stroke-width',2.5)
+    .attr('d',d3.line().x(d=>x(d.m)).y(d=>y(d.v)).curve(d3.curveMonotoneX));
+
+  // Dots
+  svg.selectAll('.gdot').data(pts).enter().append('circle').attr('class','gdot')
+    .attr('cx',d=>x(d.m)).attr('cy',d=>y(d.v)).attr('r',3.5)
+    .attr('fill',d=>d.v>=0?'#CEA472':'#00726D').attr('stroke','#fff').attr('stroke-width',1.5)
+    .on('mousemove',(e,d)=>{
+      const i=MONTHS.indexOf(d.m);
+      showTip(e,`<div class="tt">${d.m} · CPD差值</div>
+        <div class="tr"><span class="tl">浦东CPD</span><span class="tv">${fmtN(CPD_PD[i])} 元</span></div>
+        <div class="tr"><span class="tl">青浦CPD</span><span class="tv b">${fmtN(CPD_QP[i])} 元</span></div>
+        <div class="tr"><span class="tl">差值</span><span class="tv ${d.v>=0?'':'b'}">${d.v>=0?'+':''}${fmtN(d.v)} 元/辆</span></div>`);
+    }).on('mouseleave',hideTip);
+})();
+
+// ═══════════════════════════════════════════════
+//  DATA TABLE
+// ═══════════════════════════════════════════════
+(function(){
+  const tbody = document.getElementById('dtbody');
+  MONTHS.forEach((mo,i)=>{
+    const pCPD=CPD_PD[i], qCPD=CPD_QP[i];
+    const gap = pCPD&&qCPD?pCPD-qCPD:null;
+    const pMoM = i>0&&pCPD&&CPD_PD[i-1]?Math.round((CPD_PD[i-1]-pCPD)/CPD_PD[i-1]*100):null;
+    const total = VOL_PD[i]+VOL_QP[i];
+    const tr = document.createElement('tr');
+    const clsP = (v,t=1000)=>v!=null?(v<=t?'gn':''):'';
+    tr.innerHTML = `
+      <td style="font-weight:700">${mo}</td>
+      <td>${VOL_PD[i].toLocaleString()}</td>
+      <td>${VOL_QP[i].toLocaleString()}</td>
+      <td style="font-weight:600">${total.toLocaleString()}</td>
+      <td class="${clsP(pCPD)} gd">${fmtN(pCPD)}</td>
+      <td>${fmtN(CC.pd.biz[i])}</td>
+      <td>${fmtN(CC.pd.labor[i])}</td>
+      <td class="bl">${fmtN(CC.pd.venue[i])}</td>
+      <td class="${clsP(qCPD)} ${qCPD?'bl':''}">${fmtN(qCPD)}</td>
+      <td>${fmtN(CC.qp.biz[i])}</td>
+      <td>${fmtN(CC.qp.labor[i])}</td>
+      <td class="bl">${fmtN(CC.qp.venue[i])}</td>
+      <td class="${gap!=null?(gap>0?'gd':'bl'):''}">${gap!=null?(gap>0?'+':'')+fmtN(gap):'—'}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+})();
+</script>
+<div class="li-badge">✦ 理想风格 · 浅色高级灰</div>
+</body>
+</html>
